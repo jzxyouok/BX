@@ -32,7 +32,8 @@ static NSString * const XMGTagsId = @"tag";
 
 - (void)loadTags
 {
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD show];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     
     // 请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -41,12 +42,11 @@ static NSString * const XMGTagsId = @"tag";
     params[@"c"] = @"topic";
     
     // 发送请求
-    [[AFHTTPSessionManager manager] GET:@"http://api.budejie.com/api/api_open.php" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-        self.tags = [XMGRecommendTag objectArrayWithKeyValuesArray:responseObject];
+    [[AFHTTPSessionManager manager]GET:@"http://api.budejie.com/api/api_open.php" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        self.tags = [XMGRecommendTag mj_objectArrayWithKeyValuesArray:responseObject];
         [self.tableView reloadData];
-        
         [SVProgressHUD dismiss];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:@"加载标签数据失败!"];
     }];
 }

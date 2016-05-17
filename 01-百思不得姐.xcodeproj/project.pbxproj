@@ -38,7 +38,6 @@
 		70DA0D561B60D7DC00DD59F1 /* XMGRecommendTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA0D551B60D7DC00DD59F1 /* XMGRecommendTag.m */; };
 		70DA0D5A1B60D87E00DD59F1 /* XMGRecommendTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA0D581B60D87E00DD59F1 /* XMGRecommendTagCell.m */; };
 		70DA0D5B1B60D87E00DD59F1 /* XMGRecommendTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70DA0D591B60D87E00DD59F1 /* XMGRecommendTagCell.xib */; };
-		70DA0D5E1B60DED100DD59F1 /* XMGTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA0D5D1B60DED100DD59F1 /* XMGTestView.m */; };
 		DA9E81567E8AC4629608A735 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97E96429885DFBC9344ACBB0 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -111,8 +110,6 @@
 		70DA0D571B60D87E00DD59F1 /* XMGRecommendTagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGRecommendTagCell.h; sourceTree = "<group>"; };
 		70DA0D581B60D87E00DD59F1 /* XMGRecommendTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGRecommendTagCell.m; sourceTree = "<group>"; };
 		70DA0D591B60D87E00DD59F1 /* XMGRecommendTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGRecommendTagCell.xib; sourceTree = "<group>"; };
-		70DA0D5C1B60DED100DD59F1 /* XMGTestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGTestView.h; sourceTree = "<group>"; };
-		70DA0D5D1B60DED100DD59F1 /* XMGTestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGTestView.m; sourceTree = "<group>"; };
 		97E96429885DFBC9344ACBB0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ED90CEC200918F803FF50AF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -248,8 +245,6 @@
 				70DA0D571B60D87E00DD59F1 /* XMGRecommendTagCell.h */,
 				70DA0D581B60D87E00DD59F1 /* XMGRecommendTagCell.m */,
 				70DA0D591B60D87E00DD59F1 /* XMGRecommendTagCell.xib */,
-				70DA0D5C1B60DED100DD59F1 /* XMGTestView.h */,
-				70DA0D5D1B60DED100DD59F1 /* XMGTestView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -480,6 +475,7 @@
 				TargetAttributes = {
 					70B5CB511B5F27D200E1C3EA = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = XU3T6FFXAY;
 					};
 					70B5CB6A1B5F27D200E1C3EA = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -576,7 +572,6 @@
 				70B5CBCF1B5F848E00E1C3EA /* XMGNavigationController.m in Sources */,
 				70B5CBC91B5F7EEF00E1C3EA /* XMGTabBar.m in Sources */,
 				70DA0D5A1B60D87E00DD59F1 /* XMGRecommendTagCell.m in Sources */,
-				70DA0D5E1B60DED100DD59F1 /* XMGTestView.m in Sources */,
 				70B5CBC21B5F7EEF00E1C3EA /* XMGMeViewController.m in Sources */,
 				70DA0D441B60775600DD59F1 /* XMGRecommendCategoryCell.m in Sources */,
 				70DA0D561B60D7DC00DD59F1 /* XMGRecommendTag.m in Sources */,
@@ -703,11 +698,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "01-百思不得姐/Classes/Other-其他/PrefixHeader.pch";
 				INFOPLIST_FILE = "01-百思不得姐/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "XMG.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = XMG.BX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -717,11 +717,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "01-百思不得姐/Classes/Other-其他/PrefixHeader.pch";
 				INFOPLIST_FILE = "01-百思不得姐/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "XMG.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = XMG.BX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

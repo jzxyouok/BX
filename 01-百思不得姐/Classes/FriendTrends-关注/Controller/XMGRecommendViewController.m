@@ -66,28 +66,29 @@ static NSString * const XMGUserId = @"user";
 - (void)loadCategories
 {
     // 显示指示器
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD show];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     
     // 发送请求
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"a"] = @"category";
     params[@"c"] = @"subscribe";
-    [self.manager GET:@"http://api.budejie.com/api/api_open.php" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.manager GET:@"http://api.budejie.com/api/api_open.php" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         // 隐藏指示器
         [SVProgressHUD dismiss];
         
         // 服务器返回的JSON数据
-        self.categories = [XMGRecommendCategory objectArrayWithKeyValuesArray:responseObject[@"list"]];
+        self.categories = [XMGRecommendCategory mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
         
         // 刷新表格
         [self.categoryTableView reloadData];
-        
         // 默认选中首行
         [self.categoryTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
         
         // 让用户表格进入下拉刷新状态
-        [self.userTableView.header beginRefreshing];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.userTableView.mj_header beginRefreshing];
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         // 显示失败信息
         [SVProgressHUD showErrorWithStatus:@"加载推荐信息失败!"];
     }];
@@ -120,10 +121,10 @@ static NSString * const XMGUserId = @"user";
  */
 - (void)setupRefresh
 {
-    self.userTableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewUsers)];
+    self.userTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewUsers)];
     
-    self.userTableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreUsers)];
-    self.userTableView.footer.hidden = YES;
+    self.userTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreUsers)];
+    self.userTableView.mj_footer.hidden = YES;
 }
 
 #pragma mark - 加载用户数据
@@ -143,9 +144,9 @@ static NSString * const XMGUserId = @"user";
     self.params = params;
     
     // 发送请求给服务器, 加载右侧的数据
-    [self.manager GET:@"http://api.budejie.com/api/api_open.php" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.manager GET:@"http://api.budejie.com/api/api_open.php" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         // 字典数组 -> 模型数组
-        NSArray *users = [XMGRecommendUser objectArrayWithKeyValuesArray:responseObject[@"list"]];
+        NSArray *users = [XMGRecommendUser mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
         
         // 清除所有旧数据
         [rc.users removeAllObjects];
@@ -163,18 +164,20 @@ static NSString * const XMGUserId = @"user";
         [self.userTableView reloadData];
         
         // 结束刷新
-        [self.userTableView.header endRefreshing];
+        [self.userTableView.mj_header endRefreshing];
         
         // 让底部控件结束刷新
         [self checkFooterState];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (self.params != params) return;
         
         // 提醒
         [SVProgressHUD showErrorWithStatus:@"加载用户数据失败"];
         
         // 结束刷新
-        [self.userTableView.header endRefreshing];
+        [self.userTableView.mj_header endRefreshing];
+
     }];
 }
 
@@ -189,10 +192,9 @@ static NSString * const XMGUserId = @"user";
     params[@"category_id"] = @(category.id);
     params[@"page"] = @(++category.currentPage);
     self.params = params;
-    
-    [self.manager GET:@"http://api.budejie.com/api/api_open.php" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.manager GET:@"http://api.budejie.com/api/api_open.php" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         // 字典数组 -> 模型数组
-        NSArray *users = [XMGRecommendUser objectArrayWithKeyValuesArray:responseObject[@"list"]];
+        NSArray *users = [XMGRecommendUser mj_objectArrayWithKeyValuesArray:responseObject[@"list"]];
         
         // 添加到当前类别对应的用户数组中
         [category.users addObjectsFromArray:users];
@@ -205,14 +207,15 @@ static NSString * const XMGUserId = @"user";
         
         // 让底部控件结束刷新
         [self checkFooterState];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (self.params != params) return;
         
         // 提醒
         [SVProgressHUD showErrorWithStatus:@"加载用户数据失败"];
         
         // 让底部控件结束刷新
-        [self.userTableView.footer endRefreshing];
+        [self.userTableView.mj_footer endRefreshing];
     }];
 }
 
@@ -224,13 +227,13 @@ static NSString * const XMGUserId = @"user";
     XMGRecommendCategory *rc = XMGSelectedCategory;
     
     // 每次刷新右边数据时, 都控制footer显示或者隐藏
-    self.userTableView.footer.hidden = (rc.users.count == 0);
+    self.userTableView.mj_footer.hidden = (rc.users.count == 0);
     
     // 让底部控件结束刷新
     if (rc.users.count == rc.total) { // 全部数据已经加载完毕
-        [self.userTableView.footer noticeNoMoreData];
+        [self.userTableView.mj_footer endRefreshingWithNoMoreData];
     } else { // 还没有加载完毕
-        [self.userTableView.footer endRefreshing];
+        [self.userTableView.mj_footer endRefreshing];
     }
 }
 
@@ -264,8 +267,8 @@ static NSString * const XMGUserId = @"user";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // 结束刷新
-    [self.userTableView.header endRefreshing];
-    [self.userTableView.footer endRefreshing];
+    [self.userTableView.mj_header endRefreshing];
+    [self.userTableView.mj_footer endRefreshing];
     
     XMGRecommendCategory *c = self.categories[indexPath.row];
     if (c.users.count) {
@@ -276,7 +279,7 @@ static NSString * const XMGUserId = @"user";
         [self.userTableView reloadData];
     
         // 进入下拉刷新状态
-        [self.userTableView.header beginRefreshing];
+        [self.userTableView.mj_header beginRefreshing];
     }
 }
 
