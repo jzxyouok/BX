@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "XMGTabBarController.h"
-
+#import "XMGPushGuide.h"
 @interface AppDelegate ()
 
 @end
@@ -17,7 +17,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
     // 创建窗口
     self.window = [[UIWindow alloc] init];
@@ -28,6 +27,9 @@
     
     // 显示窗口
     [self.window makeKeyAndVisible];
+    
+    //判断是否需要显示推送引导
+    [XMGPushGuide show];
     
     return YES;
 }
