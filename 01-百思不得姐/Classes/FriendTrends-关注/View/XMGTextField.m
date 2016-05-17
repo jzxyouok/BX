@@ -7,7 +7,6 @@
 //
 
 #import "XMGTextField.h"
-#import <objc/runtime.h>
 
 static NSString * const XMGPlacerholderColorKeyPath = @"_placeholderLabel.textColor";
 
@@ -16,7 +15,6 @@ static NSString * const XMGPlacerholderColorKeyPath = @"_placeholderLabel.textCo
 {
     // 设置光标颜色和文字颜色一致
     self.tintColor = self.textColor;
-    
     // 不成为第一响应者
     [self resignFirstResponder];
 }

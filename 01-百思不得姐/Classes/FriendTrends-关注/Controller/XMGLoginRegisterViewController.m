@@ -9,10 +9,32 @@
 #import "XMGLoginRegisterViewController.h"
 
 @interface XMGLoginRegisterViewController ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginLeadingConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *registerOrLoginButton;
 
 @end
 
 @implementation XMGLoginRegisterViewController
+/**
+ *点击注册登录按钮
+ */
+- (IBAction)registerOrLogin:(UIButton *)sender {
+    [self.view endEditing:YES];
+    if (self.loginLeadingConstraint.constant == 0) {
+        self.loginLeadingConstraint.constant = -self.view.width;
+        [self.registerOrLoginButton setSelected:YES];
+        [UIView animateWithDuration:0.25 animations:^{
+            [self.view layoutIfNeeded];
+        }];
+    }else {
+        self.loginLeadingConstraint.constant = 0;
+        [self.registerOrLoginButton setSelected:NO];
+        [UIView animateWithDuration:0.25 animations:^{
+            [self.view layoutIfNeeded];
+        }];
+
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,6 +46,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)back:(id)sender {
+    [self.view endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
