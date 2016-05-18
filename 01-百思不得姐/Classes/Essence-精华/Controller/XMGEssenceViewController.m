@@ -8,10 +8,17 @@
 
 #import "XMGEssenceViewController.h"
 #import "XMGRecommendTagsViewController.h"
-@interface XMGEssenceViewController ()
+#import "XMGAllViewController.h"
+#import "XMGMovieViewController.h"
+#import "XMGSoundViewController.h"
+#import "XMGImageViewController.h"
+#import "XMGWordViewController.h"
+static CGFloat const animationTime = 0.5;
+@interface XMGEssenceViewController () <UIScrollViewDelegate>
 @property (nonatomic, weak) UIView *titleIndicator;
 @property (nonatomic, weak) UIButton *currentButton;
 @property (nonatomic, weak) UIView *titleView;
+@property (nonatomic, weak) UIScrollView *contentView;
 @end
 
 @implementation XMGEssenceViewController
@@ -20,9 +27,13 @@
 {
     [super viewDidLoad];
     [self setUpNav];
+    [self setUpChildVces];
     [self setUpTitleView];
     [self setUpContentView];
 }
+/**
+ *  设置导航栏
+ */
 - (void)setUpNav
 {
     // 设置导航栏标题
@@ -34,11 +45,15 @@
     // 设置背景色
     self.view.backgroundColor = XMGGlobalBg;
 }
+
+/**
+ *  设置顶部
+ */
 - (void)setUpTitleView
 {
     //整个titleView
     UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, self.view.width, 30)];
-    titleView.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:0.5];
+    titleView.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:animationTime];
     [self.view addSubview:titleView];
     self.titleView  = titleView;
     
@@ -47,8 +62,8 @@
     titleIndicator.height = 2;
     titleIndicator.y = titleView.height - titleIndicator.height;
     titleIndicator.backgroundColor = [UIColor redColor];
+    titleIndicator.tag = -1;
     self.titleIndicator = titleIndicator;
-    [titleView addSubview:titleIndicator];
     
     //titleButton
     NSArray *titles = @[@"全部",@"视频",@"音频",@"图片",@"段子"];
@@ -57,6 +72,7 @@
     CGFloat Height = titleView.height;
     for (NSInteger i = 0; i < titleCount; i++) {
         UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        titleButton.tag = i;
         titleButton.frame = CGRectMake(Width * i, 0, Width, Height);
         [titleButton setTitle:titles[i] forState:UIControlStateNormal];
         [titleButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -74,41 +90,95 @@
         }
         [titleView addSubview:titleButton];
     }
-    
+    [titleView addSubview:titleIndicator];
 }
+
+/**
+ *  设置中间
+ */
 - (void)setUpContentView
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
-    CGFloat top = CGRectGetMaxY(self.titleView.frame);
-    CGFloat bottom = self.tabBarController.tabBar.height;
     UIScrollView *contentView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
-    contentView.contentInset = UIEdgeInsetsMake(top, 0, bottom, 0);
-    contentView.contentSize = CGSizeMake(0, 800);
-    UIButton *topBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
-    topBtn.backgroundColor = [UIColor redColor];
-    
-    UIButton *bottomBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 700, 100, 100)];
-    bottomBtn.backgroundColor = [UIColor greenColor];
-    [contentView addSubview:topBtn];
-    [contentView addSubview:bottomBtn];
-    
+    contentView.pagingEnabled = YES;
+    contentView.bounces = YES;
+    contentView.delegate = self;
+    contentView.contentSize = CGSizeMake(contentView.width * self.childViewControllers.count , 0);
     [self.view insertSubview:contentView atIndex:0];
+    self.contentView = contentView;
+    [self scrollViewDidEndScrollingAnimation:self.contentView];
 }
+
+/**
+ *  添加子控制器
+ */
+- (void)setUpChildVces
+{
+    XMGAllViewController *all = [[XMGAllViewController alloc]init];
+    [self addChildViewController:all];
+    
+    XMGMovieViewController *movie = [[XMGMovieViewController alloc]init];
+    [self addChildViewController:movie];
+    
+    XMGSoundViewController *sound = [[XMGSoundViewController alloc]init];
+    [self addChildViewController:sound];
+    
+    XMGImageViewController *image = [[XMGImageViewController alloc]init];
+    [self addChildViewController:image];
+    
+    XMGWordViewController *word = [[XMGWordViewController alloc]init];
+    [self addChildViewController:word];
+}
+
+/**
+ *  点击了推荐标签
+ */
 - (void)tagClick
 {
     XMGRecommendTagsViewController *tags = [[XMGRecommendTagsViewController alloc] init];
     [self.navigationController pushViewController:tags animated:YES];
 }
 
+/**
+ *点击顶部按钮
+ */
 - (void)didSelectButton:(UIButton *)button
 {
     //控制顶部按钮的状态
     button.enabled = NO;
     self.currentButton.enabled = YES;
     self.currentButton = button;
-    self.titleIndicator.width = button.titleLabel.width;
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:animationTime animations:^{
+        self.titleIndicator.width = button.titleLabel.width;
         self.titleIndicator.centerX = button.centerX;
     }];
+
+       //滚动结果后再显示
+    CGPoint offset = self.contentView.contentOffset;
+    offset.x = button.tag * self.contentView.width;
+    [self.contentView setContentOffset:offset animated:YES];
+}
+/**
+ *通过contentoffset偏移
+ */
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    NSInteger index = scrollView.contentOffset.x / self.contentView.width;
+    //添加tableView到scrollView上
+    UITableViewController *tableVc = self.childViewControllers[index];
+    tableVc.tableView.x = scrollView.contentOffset.x;
+    [self.contentView addSubview:tableVc.tableView];
+    CGFloat top = CGRectGetMaxY(self.titleView.frame);
+    CGFloat bottom = self.tabBarController.tabBar.height;
+    tableVc.tableView.contentInset = UIEdgeInsetsMake(top, 0, bottom, 0);
+}
+/**
+ *用户拖动偏移
+ */
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self scrollViewDidEndScrollingAnimation:scrollView];
+    NSInteger index = scrollView.contentOffset.x / scrollView.width;
+    [self didSelectButton:self.titleView.subviews[index]];
 }
 @end
