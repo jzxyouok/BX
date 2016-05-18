@@ -11,6 +11,7 @@
 @interface XMGEssenceViewController ()
 @property (nonatomic, weak) UIView *titleIndicator;
 @property (nonatomic, weak) UIButton *currentButton;
+@property (nonatomic, weak) UIView *titleView;
 @end
 
 @implementation XMGEssenceViewController
@@ -20,6 +21,7 @@
     [super viewDidLoad];
     [self setUpNav];
     [self setUpTitleView];
+    [self setUpContentView];
 }
 - (void)setUpNav
 {
@@ -38,6 +40,7 @@
     UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, self.view.width, 30)];
     titleView.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:0.5];
     [self.view addSubview:titleView];
+    self.titleView  = titleView;
     
     //titleIndicator
     UIView *titleIndicator = [[UIView alloc]init];
@@ -72,6 +75,24 @@
         [titleView addSubview:titleButton];
     }
     
+}
+- (void)setUpContentView
+{
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    CGFloat top = CGRectGetMaxY(self.titleView.frame);
+    CGFloat bottom = self.tabBarController.tabBar.height;
+    UIScrollView *contentView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
+    contentView.contentInset = UIEdgeInsetsMake(top, 0, bottom, 0);
+    contentView.contentSize = CGSizeMake(0, 800);
+    UIButton *topBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+    topBtn.backgroundColor = [UIColor redColor];
+    
+    UIButton *bottomBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 700, 100, 100)];
+    bottomBtn.backgroundColor = [UIColor greenColor];
+    [contentView addSubview:topBtn];
+    [contentView addSubview:bottomBtn];
+    
+    [self.view insertSubview:contentView atIndex:0];
 }
 - (void)tagClick
 {
