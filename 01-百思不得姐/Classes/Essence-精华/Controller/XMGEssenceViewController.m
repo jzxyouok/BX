@@ -10,6 +10,7 @@
 #import "XMGRecommendTagsViewController.h"
 @interface XMGEssenceViewController ()
 @property (nonatomic, weak) UIView *titleIndicator;
+@property (nonatomic, weak) UIButton *currentButton;
 @end
 
 @implementation XMGEssenceViewController
@@ -38,6 +39,14 @@
     titleView.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:0.5];
     [self.view addSubview:titleView];
     
+    //titleIndicator
+    UIView *titleIndicator = [[UIView alloc]init];
+    titleIndicator.height = 2;
+    titleIndicator.y = titleView.height - titleIndicator.height;
+    titleIndicator.backgroundColor = [UIColor redColor];
+    self.titleIndicator = titleIndicator;
+    [titleView addSubview:titleIndicator];
+    
     //titleButton
     NSArray *titles = @[@"全部",@"视频",@"音频",@"图片",@"段子"];
     NSInteger titleCount = titles.count;
@@ -48,18 +57,21 @@
         titleButton.frame = CGRectMake(Width * i, 0, Width, Height);
         [titleButton setTitle:titles[i] forState:UIControlStateNormal];
         [titleButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [titleButton setTitleColor:[UIColor redColor] forState:UIControlStateDisabled];
         titleButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [titleButton addTarget:self action:@selector(didSelectButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        //默认选中第一个
+        if (i == 0) {
+            titleButton.enabled = NO;
+            [titleButton.titleLabel sizeToFit];
+            titleIndicator.width = titleButton.titleLabel.width;
+            titleIndicator.centerX = titleButton.centerX;
+            self.currentButton = titleButton;
+        }
         [titleView addSubview:titleButton];
     }
     
-    //titleIndicator
-    UIView *titleIndicator = [[UIView alloc]init];
-    titleIndicator.height = 2;
-    titleIndicator.y = titleView.height - titleIndicator.height;
-    titleIndicator.backgroundColor = [UIColor redColor];
-    self.titleIndicator = titleIndicator;
-    [titleView addSubview:titleIndicator];
 }
 - (void)tagClick
 {
@@ -69,6 +81,10 @@
 
 - (void)didSelectButton:(UIButton *)button
 {
+    //控制顶部按钮的状态
+    button.enabled = NO;
+    self.currentButton.enabled = YES;
+    self.currentButton = button;
     self.titleIndicator.width = button.titleLabel.width;
     [UIView animateWithDuration:0.5 animations:^{
         self.titleIndicator.centerX = button.centerX;
