@@ -167,10 +167,13 @@ static CGFloat const animationTime = 0.5;
     //添加tableView到scrollView上
     UITableViewController *tableVc = self.childViewControllers[index];
     tableVc.tableView.x = scrollView.contentOffset.x;
+    tableVc.tableView.y = 0;
     [self.contentView addSubview:tableVc.tableView];
     CGFloat top = CGRectGetMaxY(self.titleView.frame);
     CGFloat bottom = self.tabBarController.tabBar.height;
     tableVc.tableView.contentInset = UIEdgeInsetsMake(top, 0, bottom, 0);
+    //设置滚动条
+    tableVc.tableView.scrollIndicatorInsets = tableVc.tableView.contentInset;
 }
 /**
  *用户拖动偏移

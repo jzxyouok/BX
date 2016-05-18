@@ -34,6 +34,7 @@ static NSString * const Id = @"cell";
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Id];
     }
     [cell.textLabel setText:[NSString stringWithFormat:@"%@-----%zd",NSStringFromClass([self class]),indexPath.row]];
+    cell.backgroundColor = [UIColor blueColor];
     return cell;
 }
 
