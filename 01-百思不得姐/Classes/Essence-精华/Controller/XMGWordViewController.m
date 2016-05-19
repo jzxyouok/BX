@@ -11,6 +11,7 @@
 #import <MJExtension.h>
 #import <UIImageView+WebCache.h>
 #import <MJRefresh.h>
+#import <SVProgressHUD.h>
 
 #import "XMGWordTopic.h"
 
@@ -25,12 +26,23 @@
  *maxtime
  */
 @property (nonatomic, copy) NSString *maxtime;
+@property (nonatomic, strong) AFHTTPSessionManager *manager;
+//记录请求是否过期的请求参数体
+@property (nonatomic, strong) NSDictionary *params;
 @end
 
 @implementation XMGWordViewController
-
+- (AFHTTPSessionManager *)manager
+{
+    if (_manager == nil) {
+        _manager = [AFHTTPSessionManager manager];
+    }
+    return _manager;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [SVProgressHUD show];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     //设置刷新控件
     [self setUpRefresh];
     //一进来就进入刷新状态
@@ -52,15 +64,18 @@
  */
 - (void)loadMore
 {
+    [self.tableView.mj_header endRefreshing];
     //发送请求
     NSDictionary *params = @{@"a":@"list",
                              @"c":@"data",
                              @"type":@"29",
-                             @"page":@(++self.page),
+                             @"page":@(self.page),
                              @"maxtime":self.maxtime};
-    [[AFHTTPSessionManager manager]GET:@"http://api.budejie.com/api/api_open.php" parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+    self.params = params;
+    [self.manager GET:@"http://api.budejie.com/api/api_open.php" parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * _Nullable  responseObject) {
+        if (self.params != params) return;
         NSArray *list = responseObject[@"list"];
         self.maxtime = responseObject[@"info"][@"maxtime"];
         //字典转模型
@@ -68,7 +83,10 @@
         [self.wordTopics addObjectsFromArray:array];
         [self.tableView reloadData];
         [self.tableView.mj_footer endRefreshing];
+        ++self.page;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (self.params != params) return;
+        [SVProgressHUD showErrorWithStatus:@"加载数据失败!"];
         [self.tableView.mj_footer endRefreshing];
     }];
 
@@ -78,23 +96,29 @@
  */
 - (void)loadNew
 {
-    self.page = 0;
+    [self.tableView.mj_footer endRefreshing];
     //发送请求
     NSDictionary *params = @{@"a":@"list",
                              @"c":@"data",
                              @"type":@"29",
                              @"page":@(self.page)
                              };
-    [[AFHTTPSessionManager manager]GET:@"http://api.budejie.com/api/api_open.php" parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+    self.params = params;
+    [self.manager GET:@"http://api.budejie.com/api/api_open.php" parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * _Nullable  responseObject) {
+        if (self.params != params) return;
+        [SVProgressHUD dismiss];
         NSArray *array = responseObject[@"list"];
         self.maxtime = responseObject[@"info"][@"maxtime"];
         //字典转模型
         self.wordTopics = [XMGWordTopic mj_objectArrayWithKeyValuesArray:array];
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
+        self.page = 0;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (self.params != params) return;
+        [SVProgressHUD showErrorWithStatus:@"加载数据失败!"];
         [self.tableView.mj_header endRefreshing];
     }];
 
@@ -115,6 +139,11 @@ static NSString * const Id = @"cell";
     cell.detailTextLabel.text = wordTopic.text;
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:wordTopic.profile_image] placeholderImage:[UIImage imageNamed:@"defaultUserIcon"]];
     return cell;
+}
+- (void)dealloc
+{
+    //取消所有请求
+    [self.manager.operationQueue cancelAllOperations];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
