@@ -48,6 +48,8 @@
     //上拉加载更多
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNew)];
+    //呵呵哒
+    XMGLog(@"测试");
 }
 /*
  *上拉加载更多
