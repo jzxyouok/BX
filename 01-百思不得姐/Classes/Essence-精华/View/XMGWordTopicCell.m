@@ -74,6 +74,22 @@
     imageView.image = [UIImage imageNamed:@"mainCellBackground"];
     self.backgroundView = imageView;
 }
+/*
+ 今年
+  -今天
+   -1分钟内
+    刚刚
+   -1小时内
+    XX分钟内
+   -其他
+    XX小时内
+  -昨天
+    昨天 18:56:04
+  -其他
+   06-05 17:03:03
+ 非今年
+  2014-01-01 12:05:40
+ */
 - (void)setWordTopic:(XMGWordTopic *)wordTopic
 {
     _wordTopic = wordTopic;
