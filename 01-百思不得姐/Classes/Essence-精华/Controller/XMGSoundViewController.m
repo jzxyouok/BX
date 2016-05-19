@@ -16,9 +16,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    //设置内边距
+    [self setUpView];
 }
-
+- (void)setUpView
+{
+    CGFloat top = titleViewY + titleViewHeight;
+    CGFloat bottom = self.tabBarController.tabBar.height;
+    self.tableView.contentInset = UIEdgeInsetsMake(top, 0, bottom, 0);
+    //设置滚动条
+    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

@@ -41,12 +41,22 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //设置内边距
+    [self setUpView];
     [SVProgressHUD show];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     //设置刷新控件
     [self setUpRefresh];
     //一进来就进入刷新状态
     [self.tableView.mj_header beginRefreshing];
+}
+- (void)setUpView
+{
+    CGFloat top = titleViewY + titleViewHeight;
+    CGFloat bottom = self.tabBarController.tabBar.height;
+    self.tableView.contentInset = UIEdgeInsetsMake(top, 0, bottom, 0);
+    //设置滚动条
+    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
 }
 /**
  *  设置刷新控件
@@ -57,7 +67,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNew)];
     //自动改变透明度
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
 }
 /*
  *上拉加载更多
@@ -125,6 +135,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    self.tableView.mj_footer.hidden = (self.wordTopics.count == 0);
     return self.wordTopics.count;
 }
 static NSString * const Id = @"cell";

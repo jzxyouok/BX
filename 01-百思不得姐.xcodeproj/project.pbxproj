@@ -48,6 +48,7 @@
 		9C558EF91CED2871000809A2 /* XMGWordTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C558EF81CED2871000809A2 /* XMGWordTopic.m */; };
 		9C558EFD1CED5145000809A2 /* XMGWordTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C558EFB1CED5145000809A2 /* XMGWordTopicCell.m */; };
 		9C558EFE1CED5145000809A2 /* XMGWordTopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C558EFC1CED5145000809A2 /* XMGWordTopicCell.xib */; };
+		9C558F011CED8058000809A2 /* XMGConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C558F001CED8058000809A2 /* XMGConst.m */; };
 		DA9E81567E8AC4629608A735 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97E96429885DFBC9344ACBB0 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +140,8 @@
 		9C558EFA1CED5145000809A2 /* XMGWordTopicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGWordTopicCell.h; sourceTree = "<group>"; };
 		9C558EFB1CED5145000809A2 /* XMGWordTopicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGWordTopicCell.m; sourceTree = "<group>"; };
 		9C558EFC1CED5145000809A2 /* XMGWordTopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGWordTopicCell.xib; sourceTree = "<group>"; };
+		9C558EFF1CED8058000809A2 /* XMGConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGConst.h; sourceTree = "<group>"; };
+		9C558F001CED8058000809A2 /* XMGConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGConst.m; sourceTree = "<group>"; };
 		9ED90CEC200918F803FF50AF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -423,6 +426,8 @@
 				70B5CBE11B5F9A8100E1C3EA /* Foundation+Log.m */,
 				70B5CBBB1B5F7EEF00E1C3EA /* main.m */,
 				70B5CBBC1B5F7EEF00E1C3EA /* PrefixHeader.pch */,
+				9C558EFF1CED8058000809A2 /* XMGConst.h */,
+				9C558F001CED8058000809A2 /* XMGConst.m */,
 			);
 			path = "Other-其他";
 			sourceTree = "<group>";
@@ -636,6 +641,7 @@
 				9C558EF61CEC2557000809A2 /* XMGWordViewController.m in Sources */,
 				7069885E1B6470FF00DA90AA /* XMGVerticalButton.m in Sources */,
 				70B5CBC71B5F7EEF00E1C3EA /* XMGTabBarController.m in Sources */,
+				9C558F011CED8058000809A2 /* XMGConst.m in Sources */,
 				70B5CBC11B5F7EEF00E1C3EA /* XMGFriendTrendsViewController.m in Sources */,
 				9C558EED1CEC251A000809A2 /* XMGMovieViewController.m in Sources */,
 				70B5CBC41B5F7EEF00E1C3EA /* AppDelegate.m in Sources */,
