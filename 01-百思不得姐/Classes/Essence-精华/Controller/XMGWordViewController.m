@@ -50,6 +50,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNew)];
     //呵呵哒
     XMGLog(@"测试");
+    XMGLog(@"修改邮箱");
 }
 /*
  *上拉加载更多
