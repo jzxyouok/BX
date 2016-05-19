@@ -33,6 +33,8 @@
         //字典转模型
         self.wordTopics = [XMGWordTopic mj_objectArrayWithKeyValuesArray:array];
         [self.tableView reloadData];
+        //测试提交后头像会不会变动
+        XMGLog(@"%Hello GitHub");
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
