@@ -16,7 +16,15 @@
 
 @interface XMGWordViewController ()
 //模型数组
-@property (nonatomic, strong) NSArray *wordTopics;
+@property (nonatomic, strong) NSMutableArray *wordTopics;
+/*
+ *加载的页数
+ */
+@property (nonatomic, assign) NSInteger page;
+/*
+ *maxtime
+ */
+@property (nonatomic, copy) NSString *maxtime;
 @end
 
 @implementation XMGWordViewController
@@ -25,20 +33,8 @@
     [super viewDidLoad];
     //设置刷新控件
     [self setUpRefresh];
-    //发送请求
-    NSDictionary *params = @{@"a":@"list",
-                            @"c":@"data",
-                             @"type":@"29"};
-    [[AFHTTPSessionManager manager]GET:@"http://api.budejie.com/api/api_open.php" parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * _Nullable  responseObject) {
-        NSArray *array = responseObject[@"list"];
-        //字典转模型
-        self.wordTopics = [XMGWordTopic mj_objectArrayWithKeyValuesArray:array];
-        [self.tableView reloadData];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-    }];
+    //一进来就进入刷新状态
+    [self.tableView.mj_header beginRefreshing];
 }
 /**
  *  设置刷新控件
@@ -46,28 +42,62 @@
 - (void)setUpRefresh
 {
     //上拉加载更多
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNew)];
-    //呵呵哒
-    XMGLog(@"测试");
-    XMGLog(@"修改邮箱");
+    //自动改变透明度
+    self.tableView.mj_header.automaticallyChangeAlpha = YES;
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
 }
 /*
  *上拉加载更多
  */
 - (void)loadMore
 {
-    
+    //发送请求
+    NSDictionary *params = @{@"a":@"list",
+                             @"c":@"data",
+                             @"type":@"29",
+                             @"page":@(++self.page),
+                             @"maxtime":self.maxtime};
+    [[AFHTTPSessionManager manager]GET:@"http://api.budejie.com/api/api_open.php" parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * _Nullable  responseObject) {
+        NSArray *list = responseObject[@"list"];
+        self.maxtime = responseObject[@"info"][@"maxtime"];
+        //字典转模型
+        NSArray *array = [XMGWordTopic mj_objectArrayWithKeyValuesArray:list];
+        [self.wordTopics addObjectsFromArray:array];
+        [self.tableView reloadData];
+        [self.tableView.mj_footer endRefreshing];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self.tableView.mj_footer endRefreshing];
+    }];
+
 }
 /**
  *  下拉刷新
  */
 - (void)loadNew
 {
-    
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+    self.page = 0;
+    //发送请求
+    NSDictionary *params = @{@"a":@"list",
+                             @"c":@"data",
+                             @"type":@"29",
+                             @"page":@(self.page)
+                             };
+    [[AFHTTPSessionManager manager]GET:@"http://api.budejie.com/api/api_open.php" parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * _Nullable  responseObject) {
+        NSArray *array = responseObject[@"list"];
+        self.maxtime = responseObject[@"info"][@"maxtime"];
+        //字典转模型
+        self.wordTopics = [XMGWordTopic mj_objectArrayWithKeyValuesArray:array];
+        [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self.tableView.mj_header endRefreshing];
+    }];
+
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -85,5 +115,8 @@ static NSString * const Id = @"cell";
     cell.detailTextLabel.text = wordTopic.text;
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:wordTopic.profile_image] placeholderImage:[UIImage imageNamed:@"defaultUserIcon"]];
     return cell;
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 @end

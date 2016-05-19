@@ -21,4 +21,24 @@
  *图片
  */
 @property (nonatomic, copy) NSString *profile_image;
+/*
+ *发帖时间
+ */
+@property (nonatomic, copy) NSString *created_at;
+/*
+ *顶的人数
+ */
+@property (nonatomic, assign) NSInteger ding;
+/*
+ *踩的人数
+ */
+@property (nonatomic, assign) NSInteger cai;
+/*
+ *转发的人数
+ */
+@property (nonatomic, assign) NSInteger repost;
+/*
+ *评论的人数
+ */
+@property (nonatomic, assign) NSInteger comment;
 @end

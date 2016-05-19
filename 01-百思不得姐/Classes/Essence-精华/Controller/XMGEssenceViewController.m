@@ -168,6 +168,7 @@ static CGFloat const animationTime = 0.5;
     UITableViewController *tableVc = self.childViewControllers[index];
     tableVc.tableView.x = scrollView.contentOffset.x;
     tableVc.tableView.y = 0;
+    tableVc.tableView.height = self.view.height;
     [self.contentView addSubview:tableVc.tableView];
     CGFloat top = CGRectGetMaxY(self.titleView.frame);
     CGFloat bottom = self.tabBarController.tabBar.height;

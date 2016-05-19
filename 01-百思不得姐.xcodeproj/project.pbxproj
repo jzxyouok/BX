@@ -46,6 +46,8 @@
 		9C558EF31CEC2547000809A2 /* XMGImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C558EF21CEC2547000809A2 /* XMGImageViewController.m */; };
 		9C558EF61CEC2557000809A2 /* XMGWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C558EF51CEC2557000809A2 /* XMGWordViewController.m */; };
 		9C558EF91CED2871000809A2 /* XMGWordTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C558EF81CED2871000809A2 /* XMGWordTopic.m */; };
+		9C558EFD1CED5145000809A2 /* XMGWordTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C558EFB1CED5145000809A2 /* XMGWordTopicCell.m */; };
+		9C558EFE1CED5145000809A2 /* XMGWordTopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C558EFC1CED5145000809A2 /* XMGWordTopicCell.xib */; };
 		DA9E81567E8AC4629608A735 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97E96429885DFBC9344ACBB0 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +136,9 @@
 		9C558EF51CEC2557000809A2 /* XMGWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGWordViewController.m; sourceTree = "<group>"; };
 		9C558EF71CED2871000809A2 /* XMGWordTopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGWordTopic.h; sourceTree = "<group>"; };
 		9C558EF81CED2871000809A2 /* XMGWordTopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGWordTopic.m; sourceTree = "<group>"; };
+		9C558EFA1CED5145000809A2 /* XMGWordTopicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGWordTopicCell.h; sourceTree = "<group>"; };
+		9C558EFB1CED5145000809A2 /* XMGWordTopicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGWordTopicCell.m; sourceTree = "<group>"; };
+		9C558EFC1CED5145000809A2 /* XMGWordTopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGWordTopicCell.xib; sourceTree = "<group>"; };
 		9ED90CEC200918F803FF50AF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -280,6 +285,9 @@
 				70DA0D571B60D87E00DD59F1 /* XMGRecommendTagCell.h */,
 				70DA0D581B60D87E00DD59F1 /* XMGRecommendTagCell.m */,
 				70DA0D591B60D87E00DD59F1 /* XMGRecommendTagCell.xib */,
+				9C558EFA1CED5145000809A2 /* XMGWordTopicCell.h */,
+				9C558EFB1CED5145000809A2 /* XMGWordTopicCell.m */,
+				9C558EFC1CED5145000809A2 /* XMGWordTopicCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -550,6 +558,7 @@
 				70DA0D5B1B60D87E00DD59F1 /* XMGRecommendTagCell.xib in Resources */,
 				9C558EE71CEBD393000809A2 /* XMGPushGuide.xib in Resources */,
 				70DA0D451B60775600DD59F1 /* XMGRecommendCategoryCell.xib in Resources */,
+				9C558EFE1CED5145000809A2 /* XMGWordTopicCell.xib in Resources */,
 				7069885B1B646ACA00DA90AA /* XMGLoginRegisterViewController.xib in Resources */,
 				70B5CB631B5F27D200E1C3EA /* Images.xcassets in Resources */,
 				70B5CBD11B5F942F00E1C3EA /* XMGFriendTrendsViewController.xib in Resources */,
@@ -616,6 +625,7 @@
 				9C558EF91CED2871000809A2 /* XMGWordTopic.m in Sources */,
 				70B5CBC21B5F7EEF00E1C3EA /* XMGMeViewController.m in Sources */,
 				9C558EEA1CEC250A000809A2 /* XMGAllViewController.m in Sources */,
+				9C558EFD1CED5145000809A2 /* XMGWordTopicCell.m in Sources */,
 				70DA0D441B60775600DD59F1 /* XMGRecommendCategoryCell.m in Sources */,
 				70DA0D561B60D7DC00DD59F1 /* XMGRecommendTag.m in Sources */,
 				9C558EF01CEC252B000809A2 /* XMGSoundViewController.m in Sources */,
