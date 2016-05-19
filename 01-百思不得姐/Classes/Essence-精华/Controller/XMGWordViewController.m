@@ -10,6 +10,7 @@
 #import <AFNetworking.h>
 #import <MJExtension.h>
 #import <UIImageView+WebCache.h>
+#import <MJRefresh.h>
 
 #import "XMGWordTopic.h"
 
@@ -22,6 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //设置刷新控件
+    [self setUpRefresh];
     //发送请求
     NSDictionary *params = @{@"a":@"list",
                             @"c":@"data",
@@ -33,13 +36,33 @@
         //字典转模型
         self.wordTopics = [XMGWordTopic mj_objectArrayWithKeyValuesArray:array];
         [self.tableView reloadData];
-        //测试提交后头像会不会变动
-        XMGLog(@"%Hello GitHub");
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
 }
-
+/**
+ *  设置刷新控件
+ */
+- (void)setUpRefresh
+{
+    //上拉加载更多
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNew)];
+}
+/*
+ *上拉加载更多
+ */
+- (void)loadMore
+{
+    
+}
+/**
+ *  下拉刷新
+ */
+- (void)loadNew
+{
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
