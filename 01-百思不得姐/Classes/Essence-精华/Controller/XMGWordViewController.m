@@ -14,7 +14,7 @@
 #import <SVProgressHUD.h>
 
 #import "XMGWordTopic.h"
-
+#import "XMGWordTopicCell.h"
 @interface XMGWordViewController ()
 //模型数组
 @property (nonatomic, strong) NSMutableArray *wordTopics;
@@ -39,6 +39,7 @@
     }
     return _manager;
 }
+static NSString * const XMGWordTopicId = @"wordTopic";
 - (void)viewDidLoad {
     [super viewDidLoad];
     //设置内边距
@@ -49,6 +50,8 @@
     [self setUpRefresh];
     //一进来就进入刷新状态
     [self.tableView.mj_header beginRefreshing];
+    //注册
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([XMGWordTopicCell class]) bundle:nil] forCellReuseIdentifier:XMGWordTopicId];
 }
 - (void)setUpView
 {
@@ -57,6 +60,8 @@
     self.tableView.contentInset = UIEdgeInsetsMake(top, 0, bottom, 0);
     //设置滚动条
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = [UIColor clearColor];
 }
 /**
  *  设置刷新控件
@@ -133,23 +138,27 @@
     }];
 
 }
+#pragma mark - tableView数据源-代理方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     self.tableView.mj_footer.hidden = (self.wordTopics.count == 0);
     return self.wordTopics.count;
 }
-static NSString * const Id = @"cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Id];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:Id];
-    }
+    XMGWordTopicCell *cell = [tableView dequeueReusableCellWithIdentifier:XMGWordTopicId];
     XMGWordTopic *wordTopic = self.wordTopics[indexPath.row];
-    cell.textLabel.text = wordTopic.name;
-    cell.detailTextLabel.text = wordTopic.text;
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:wordTopic.profile_image] placeholderImage:[UIImage imageNamed:@"defaultUserIcon"]];
+    cell.wordTopic = wordTopic;
+    //中间的text
+//    UILabel *textLabel = [[UILabel alloc]init];
     return cell;
+}
+/**
+ *设置行高
+ */
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 250;
 }
 - (void)dealloc
 {
