@@ -9,7 +9,6 @@
 #import "XMGWordTopicCell.h"
 #import "XMGWordTopic.h"
 #import <UIImageView+WebCache.h>
-#import "NSDate+XMGExtension.h"
 @interface XMGWordTopicCell ()
 /**
  *  头像
@@ -98,7 +97,7 @@
     //姓名
     _nameLabel.text = _wordTopic.name;
     //时间
-    [self setLabelWithTime:_wordTopic.created_at];
+    [self.createTimeLabel setText:_wordTopic.created_at];
     //顶
     [self setTitleWithButton:_dingButton count:_wordTopic.ding placeTitle:@"顶"];
     //踩
@@ -141,34 +140,5 @@
         placeTitle = [NSString stringWithFormat:@"%zd",count];
     }
     [button setTitle:placeTitle forState:UIControlStateNormal];
-}
-#pragma mark - 对时间做处理
-- (void)setLabelWithTime:(NSString *)time
-{
-    //获取当前系统时间
-    NSDate *now = [NSDate date];
-    NSDateFormatter *fmt = [[NSDateFormatter alloc]init];
-    fmt.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    //发帖时间
-    NSDate *create = [fmt dateFromString:time];
-    NSDateComponents *cmps = [now deltaFromDate:create];
-    if (cmps.year) {
-        self.createTimeLabel.text = [NSString stringWithFormat:@"%zd年前",cmps.year];
-        return;
-    }else if (cmps.month) {
-        self.createTimeLabel.text = [NSString stringWithFormat:@"%zd月前",cmps.month];
-        return;
-    }else if (cmps.day) {
-        self.createTimeLabel.text = [NSString stringWithFormat:@"%zd天前",cmps.day];
-        return;
-    }else if (cmps.hour) {
-        self.createTimeLabel.text = [NSString stringWithFormat:@"%zd小时前",cmps.hour];
-        return;
-    }else if (cmps.minute) {
-        self.createTimeLabel.text = [NSString stringWithFormat:@"%zd分钟前",cmps.minute];
-        return;
-    }else {
-        self.createTimeLabel.text = [NSString stringWithFormat:@"%zd秒前",cmps.second];
-    }
 }
 @end
