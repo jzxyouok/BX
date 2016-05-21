@@ -22,6 +22,10 @@
  */
 @property (nonatomic, copy) NSString *profile_image;
 /*
+ *新浪加V
+ */
+@property (nonatomic, assign,getter=isSina_v) BOOL sina_v;
+/*
  *发帖时间
  */
 @property (nonatomic, copy) NSString *created_at;

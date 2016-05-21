@@ -21,10 +21,10 @@
             NSDateComponents *cmps = [[NSDate date] deltaFromDate:create];
             if (cmps.hour >=1) {
                 //今天其他
-                return [NSString stringWithFormat:@"%zd小时内",cmps.hour];
+                return [NSString stringWithFormat:@"%zd小时前",cmps.hour];
             }else if (cmps.minute>=1) {
                 //今天1小时内
-                return [NSString stringWithFormat:@"%zd分钟内",cmps.minute];
+                return [NSString stringWithFormat:@"%zd分钟前",cmps.minute];
             }else {
                 //今天1分钟内
                 return [NSString stringWithFormat:@"刚刚"];

@@ -15,6 +15,11 @@
  */
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 /**
+ *  新浪加v
+ */
+@property (weak, nonatomic) IBOutlet UIImageView *sinavImageView;
+
+/**
  *  姓名
  */
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -92,6 +97,8 @@
 - (void)setWordTopic:(XMGWordTopic *)wordTopic
 {
     _wordTopic = wordTopic;
+    //新浪加v
+    _sinavImageView.hidden = !_wordTopic.isSina_v;
     //头像
     [_profileImageView sd_setImageWithURL:[NSURL URLWithString:_wordTopic.profile_image] placeholderImage:[UIImage imageNamed:@"defaultUserIcon"]];
     //姓名
