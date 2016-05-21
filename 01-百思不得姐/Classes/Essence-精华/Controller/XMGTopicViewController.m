@@ -31,6 +31,10 @@
 @property (nonatomic, strong) AFHTTPSessionManager *manager;
 //记录请求是否过期的请求参数体
 @property (nonatomic, strong) NSDictionary *params;
+/*
+ *行高
+ */
+@property (nonatomic, assign) CGFloat rowH;
 @end
 
 @implementation XMGTopicViewController
@@ -151,14 +155,22 @@ static NSString * const XMGWordTopicId = @"wordTopic";
     XMGWordTopicCell *cell = [tableView dequeueReusableCellWithIdentifier:XMGWordTopicId];
     XMGWordTopic *wordTopic = self.wordTopics[indexPath.row];
     cell.wordTopic = wordTopic;
-    //中间的text
-    //    UILabel *textLabel = [[UILabel alloc]init];
+    //强制布局
+    [cell layoutIfNeeded];
+    self.rowH = cell.height;
     return cell;
 }
 /**
  *设置行高
  */
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.rowH;
+}
+/**
+ *估计行高
+ */
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 250;
 }

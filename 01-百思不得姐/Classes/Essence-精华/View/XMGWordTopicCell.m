@@ -152,4 +152,8 @@
     }
     [button setTitle:placeTitle forState:UIControlStateNormal];
 }
+- (CGFloat)height
+{
+    return (55+_labelTitle.height+44+10+10);
+}
 @end
