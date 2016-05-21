@@ -34,10 +34,6 @@
 @end
 
 @implementation XMGTopicViewController
-- (NSString *)type
-{
-    return nil;
-}
 - (AFHTTPSessionManager *)manager
 {
     if (_manager == nil) {
@@ -89,7 +85,7 @@ static NSString * const XMGWordTopicId = @"wordTopic";
     //发送请求
     NSDictionary *params = @{@"a":@"list",
                              @"c":@"data",
-                             @"type":self.type,
+                             @"type":@(self.type),
                              @"page":@(self.page),
                              @"maxtime":self.maxtime};
     self.params = params;
@@ -121,7 +117,7 @@ static NSString * const XMGWordTopicId = @"wordTopic";
     //发送请求
     NSDictionary *params = @{@"a":@"list",
                              @"c":@"data",
-                             @"type":self.type,
+                             @"type":@(self.type),
                              @"page":@(self.page)
                              };
     self.params = params;

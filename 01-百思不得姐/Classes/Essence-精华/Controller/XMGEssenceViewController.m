@@ -8,11 +8,7 @@
 
 #import "XMGEssenceViewController.h"
 #import "XMGRecommendTagsViewController.h"
-#import "XMGAllViewController.h"
-#import "XMGMovieViewController.h"
-#import "XMGSoundViewController.h"
-#import "XMGImageViewController.h"
-#import "XMGWordViewController.h"
+#import "XMGTopicViewController.h"
 static CGFloat const animationTime = 0.5;
 @interface XMGEssenceViewController () <UIScrollViewDelegate>
 @property (nonatomic, weak) UIView *titleIndicator;
@@ -114,19 +110,24 @@ static CGFloat const animationTime = 0.5;
  */
 - (void)setUpChildVces
 {
-    XMGAllViewController *all = [[XMGAllViewController alloc]init];
+    XMGTopicViewController *all = [[XMGTopicViewController alloc]init];
+    all.type = XMGTpoicTypeAll;
     [self addChildViewController:all];
     
-    XMGMovieViewController *movie = [[XMGMovieViewController alloc]init];
+    XMGTopicViewController *movie = [[XMGTopicViewController alloc]init];
+    all.type = XMGTpoicTypeMovie;
     [self addChildViewController:movie];
     
-    XMGSoundViewController *sound = [[XMGSoundViewController alloc]init];
+    XMGTopicViewController *sound = [[XMGTopicViewController alloc]init];
+    all.type = XMGTpoicTypeSound;
     [self addChildViewController:sound];
     
-    XMGImageViewController *image = [[XMGImageViewController alloc]init];
+    XMGTopicViewController *image = [[XMGTopicViewController alloc]init];
+    all.type = XMGTpoicTypeImage;
     [self addChildViewController:image];
     
-    XMGWordViewController *word = [[XMGWordViewController alloc]init];
+    XMGTopicViewController *word = [[XMGTopicViewController alloc]init];
+    all.type = XMGTpoicTypeWord;
     [self addChildViewController:word];
 }
 
