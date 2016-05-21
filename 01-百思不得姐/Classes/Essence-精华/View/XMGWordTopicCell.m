@@ -135,11 +135,10 @@
 }
 - (void)setFrame:(CGRect)frame
 {
-    static CGFloat margin = 10;
-    frame.origin.x = margin;
-    frame.origin.y += margin;
-    frame.size.width -= 2 * margin;
-    frame.size.height -= margin;
+    frame.origin.x = XMGTopicMargin;
+    frame.origin.y += XMGTopicMargin;
+    frame.size.width -= 2 * XMGTopicMargin;
+    frame.size.height -= XMGTopicMargin;
     [super setFrame:frame];
 }
 #pragma mark - 对按钮文字做处理的方法
@@ -151,9 +150,5 @@
         placeTitle = [NSString stringWithFormat:@"%zd",count];
     }
     [button setTitle:placeTitle forState:UIControlStateNormal];
-}
-- (CGFloat)height
-{
-    return (55+_labelTitle.height+44+10+10);
 }
 @end

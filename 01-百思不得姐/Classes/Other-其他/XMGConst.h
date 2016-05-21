@@ -9,4 +9,6 @@
 
 UIKIT_EXTERN CGFloat const titleViewHeight;
 UIKIT_EXTERN CGFloat const titleViewY;
-
+UIKIT_EXTERN CGFloat const cellTextLabelY;
+UIKIT_EXTERN CGFloat const cellBottomViewH;
+UIKIT_EXTERN CGFloat const XMGTopicMargin;

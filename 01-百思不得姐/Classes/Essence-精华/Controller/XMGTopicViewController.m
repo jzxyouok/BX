@@ -31,10 +31,6 @@
 @property (nonatomic, strong) AFHTTPSessionManager *manager;
 //记录请求是否过期的请求参数体
 @property (nonatomic, strong) NSDictionary *params;
-/*
- *行高
- */
-@property (nonatomic, assign) CGFloat rowH;
 @end
 
 @implementation XMGTopicViewController
@@ -155,9 +151,6 @@ static NSString * const XMGWordTopicId = @"wordTopic";
     XMGWordTopicCell *cell = [tableView dequeueReusableCellWithIdentifier:XMGWordTopicId];
     XMGWordTopic *wordTopic = self.wordTopics[indexPath.row];
     cell.wordTopic = wordTopic;
-    //强制布局
-    [cell layoutIfNeeded];
-    self.rowH = cell.height;
     return cell;
 }
 /**
@@ -165,14 +158,10 @@ static NSString * const XMGWordTopicId = @"wordTopic";
  */
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return self.rowH;
-}
-/**
- *估计行高
- */
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 250;
+    XMGWordTopic *topic = self.wordTopics[indexPath.row];
+    NSString *str = topic.text;
+    CGFloat labelH = [str boundingRectWithSize:CGSizeMake(self.view.width-4*XMGTopicMargin, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
+    return cellTextLabelY+cellBottomViewH+labelH+2*XMGTopicMargin;
 }
 - (void)dealloc
 {
@@ -182,6 +171,4 @@ static NSString * const XMGWordTopicId = @"wordTopic";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
-
 @end

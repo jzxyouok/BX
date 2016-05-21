@@ -7,6 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
-
+/**
+ *  顶部视图的高度(全部,视频,音频,图片,段子)
+ */
 CGFloat const titleViewHeight = 30;
+
+/**
+ *  顶部视图的Y值
+ */
 CGFloat const titleViewY = 64;
+
+/**
+ *  cell中文字label的Y值
+ */
+CGFloat const cellTextLabelY = 55;
+
+/**
+ *  cell底部工具条的高度
+ */
+CGFloat const cellBottomViewH = 44;
+
+/**
+ *  cell中控件的间距
+ */
+CGFloat const XMGTopicMargin = 10;
