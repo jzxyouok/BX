@@ -45,4 +45,10 @@
  *评论的人数
  */
 @property (nonatomic, assign) NSInteger comment;
+
+
+/*
+ *辅助的属性
+ */
+@property (nonatomic, assign, readonly) CGFloat cellHeight;
 @end

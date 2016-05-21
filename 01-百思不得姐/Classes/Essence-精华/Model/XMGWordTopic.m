@@ -9,6 +9,10 @@
 #import "XMGWordTopic.h"
 #import "NSDate+XMGExtension.h"
 @implementation XMGWordTopic
+{
+    //私有成员变量
+    CGFloat _cellHeight;
+}
 - (NSString *)created_at
 {
     NSDateFormatter *fmt = [[NSDateFormatter alloc]init];
@@ -42,5 +46,14 @@
         //不是今年
         return [NSString stringWithFormat:@"%@",_created_at];
     }
+}
+
+- (CGFloat)cellHeight
+{
+    if (!_cellHeight) {
+        CGFloat labelH = [self.text boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width-4*XMGTopicMargin, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
+        _cellHeight = cellTextLabelY+cellBottomViewH+labelH+2*XMGTopicMargin;
+    }
+    return _cellHeight;
 }
 @end

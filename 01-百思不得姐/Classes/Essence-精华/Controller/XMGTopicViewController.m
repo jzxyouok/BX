@@ -159,9 +159,7 @@ static NSString * const XMGWordTopicId = @"wordTopic";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     XMGWordTopic *topic = self.wordTopics[indexPath.row];
-    NSString *str = topic.text;
-    CGFloat labelH = [str boundingRectWithSize:CGSizeMake(self.view.width-4*XMGTopicMargin, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
-    return cellTextLabelY+cellBottomViewH+labelH+2*XMGTopicMargin;
+    return topic.cellHeight;
 }
 - (void)dealloc
 {
