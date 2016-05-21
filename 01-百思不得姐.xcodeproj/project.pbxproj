@@ -38,6 +38,7 @@
 		70DA0D561B60D7DC00DD59F1 /* XMGRecommendTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA0D551B60D7DC00DD59F1 /* XMGRecommendTag.m */; };
 		70DA0D5A1B60D87E00DD59F1 /* XMGRecommendTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA0D581B60D87E00DD59F1 /* XMGRecommendTagCell.m */; };
 		70DA0D5B1B60D87E00DD59F1 /* XMGRecommendTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70DA0D591B60D87E00DD59F1 /* XMGRecommendTagCell.xib */; };
+		9C13F7871CEFEF06002C5046 /* XMGTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C13F7861CEFEF06002C5046 /* XMGTopicViewController.m */; };
 		9C558EE51CEBD387000809A2 /* XMGPushGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C558EE41CEBD387000809A2 /* XMGPushGuide.m */; };
 		9C558EE71CEBD393000809A2 /* XMGPushGuide.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C558EE61CEBD393000809A2 /* XMGPushGuide.xib */; };
 		9C558EEA1CEC250A000809A2 /* XMGAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C558EE91CEC250A000809A2 /* XMGAllViewController.m */; };
@@ -123,6 +124,8 @@
 		70DA0D581B60D87E00DD59F1 /* XMGRecommendTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGRecommendTagCell.m; sourceTree = "<group>"; };
 		70DA0D591B60D87E00DD59F1 /* XMGRecommendTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGRecommendTagCell.xib; sourceTree = "<group>"; };
 		97E96429885DFBC9344ACBB0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C13F7851CEFEF06002C5046 /* XMGTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGTopicViewController.h; sourceTree = "<group>"; };
+		9C13F7861CEFEF06002C5046 /* XMGTopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGTopicViewController.m; sourceTree = "<group>"; };
 		9C558EE31CEBD387000809A2 /* XMGPushGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGPushGuide.h; sourceTree = "<group>"; };
 		9C558EE41CEBD387000809A2 /* XMGPushGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGPushGuide.m; sourceTree = "<group>"; };
 		9C558EE61CEBD393000809A2 /* XMGPushGuide.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGPushGuide.xib; sourceTree = "<group>"; };
@@ -260,6 +263,8 @@
 				70B5CB9B1B5F7EEF00E1C3EA /* XMGEssenceViewController.m */,
 				70DA0D511B60D67C00DD59F1 /* XMGRecommendTagsViewController.h */,
 				70DA0D521B60D67C00DD59F1 /* XMGRecommendTagsViewController.m */,
+				9C13F7851CEFEF06002C5046 /* XMGTopicViewController.h */,
+				9C13F7861CEFEF06002C5046 /* XMGTopicViewController.m */,
 				9C558EE81CEC250A000809A2 /* XMGAllViewController.h */,
 				9C558EE91CEC250A000809A2 /* XMGAllViewController.m */,
 				9C558EEB1CEC251A000809A2 /* XMGMovieViewController.h */,
@@ -627,6 +632,7 @@
 				7069885A1B646ACA00DA90AA /* XMGLoginRegisterViewController.m in Sources */,
 				9C558EE51CEBD387000809A2 /* XMGPushGuide.m in Sources */,
 				70DA0D531B60D67C00DD59F1 /* XMGRecommendTagsViewController.m in Sources */,
+				9C13F7871CEFEF06002C5046 /* XMGTopicViewController.m in Sources */,
 				70DA0D401B60760600DD59F1 /* XMGRecommendCategory.m in Sources */,
 				70B5CBCF1B5F848E00E1C3EA /* XMGNavigationController.m in Sources */,
 				70B5CBC91B5F7EEF00E1C3EA /* XMGTabBar.m in Sources */,
