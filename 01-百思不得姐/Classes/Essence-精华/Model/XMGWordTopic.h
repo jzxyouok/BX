@@ -51,4 +51,25 @@
  *辅助的属性
  */
 @property (nonatomic, assign, readonly) CGFloat cellHeight;
+/*
+ *图片宽度
+ */
+@property (nonatomic, assign) CGFloat width;
+/*
+ *图片高度
+ */
+@property (nonatomic, assign) CGFloat height;
+/*
+ *图片URL image0
+ */
+@property (nonatomic, copy) NSString *small_image;
+/*
+ *图片URL image1
+ */
+@property (nonatomic, copy) NSString *large_image;
+/*
+ *图片URL image1
+ */
+@property (nonatomic, copy) NSString *middle_image;
+
 @end

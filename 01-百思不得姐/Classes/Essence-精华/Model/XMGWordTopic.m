@@ -13,6 +13,13 @@
     //私有成员变量
     CGFloat _cellHeight;
 }
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"small_image":@"image0",
+             @"large_image":@"image1",
+             @"middle_image":@"image2"
+             };
+}
 - (NSString *)created_at
 {
     NSDateFormatter *fmt = [[NSDateFormatter alloc]init];
@@ -52,7 +59,7 @@
 {
     if (!_cellHeight) {
         CGFloat labelH = [self.text boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width-4*XMGTopicMargin, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
-        _cellHeight = cellTextLabelY+cellBottomViewH+labelH+2*XMGTopicMargin;
+        _cellHeight = cellTextLabelY+cellBottomViewH+labelH+2*XMGTopicMargin+self.height;
     }
     return _cellHeight;
 }

@@ -7,8 +7,13 @@
 //
 
 #import "XMGRecommendCategory.h"
-
 @implementation XMGRecommendCategory
++ (NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{
+             @"Id":@"id"
+             };
+}
 - (NSMutableArray *)users
 {
     if (!_users) {
