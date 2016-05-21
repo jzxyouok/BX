@@ -158,6 +158,12 @@
                             <constraint firstAttribute="height" constant="14" id="MSd-Yj-Mri"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="an2-oH-J5Z" userLabel="文字">
+                        <rect key="frame" x="10" y="55" width="311" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="mrM-E9-DYM" firstAttribute="leading" secondItem="pL6-rS-Gkc" secondAttribute="trailing" constant="10" id="21q-rY-61V"/>
@@ -167,11 +173,14 @@
                     <constraint firstItem="xmK-aO-MeU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="FIu-Fy-XEh"/>
                     <constraint firstItem="mrM-E9-DYM" firstAttribute="top" secondItem="pL6-rS-Gkc" secondAttribute="top" id="Met-wf-2qg"/>
                     <constraint firstAttribute="bottom" secondItem="xmK-aO-MeU" secondAttribute="bottom" id="NT4-zq-eZh"/>
+                    <constraint firstItem="an2-oH-J5Z" firstAttribute="top" secondItem="pL6-rS-Gkc" secondAttribute="bottom" constant="10" id="SnI-06-iYQ"/>
                     <constraint firstItem="RdJ-ac-Qwg" firstAttribute="trailing" secondItem="pL6-rS-Gkc" secondAttribute="trailing" constant="5" id="WeQ-WS-pto"/>
                     <constraint firstAttribute="trailing" secondItem="xmK-aO-MeU" secondAttribute="trailing" id="enP-ly-sg4"/>
                     <constraint firstItem="RdJ-ac-Qwg" firstAttribute="bottom" secondItem="pL6-rS-Gkc" secondAttribute="bottom" constant="5" id="kO5-Jc-aZn"/>
                     <constraint firstItem="pL6-rS-Gkc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="p4I-m6-Kr5"/>
+                    <constraint firstItem="an2-oH-J5Z" firstAttribute="leading" secondItem="pL6-rS-Gkc" secondAttribute="leading" id="q0E-u6-ezg"/>
                     <constraint firstItem="MCT-Oy-7Kz" firstAttribute="bottom" secondItem="pL6-rS-Gkc" secondAttribute="bottom" id="sGf-5C-gxF"/>
+                    <constraint firstItem="an2-oH-J5Z" firstAttribute="trailing" secondItem="1fN-Ss-sTN" secondAttribute="trailing" id="vIM-jc-BwD"/>
                     <constraint firstItem="1fN-Ss-sTN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="zcX-WA-0wy"/>
                 </constraints>
             </tableViewCellContentView>
@@ -180,6 +189,7 @@
                 <outlet property="commentButton" destination="vwb-J9-1kf" id="D0d-oH-TCk"/>
                 <outlet property="createTimeLabel" destination="MCT-Oy-7Kz" id="V6r-yH-pRu"/>
                 <outlet property="dingButton" destination="67N-7H-m20" id="KYq-SM-IAh"/>
+                <outlet property="labelTitle" destination="an2-oH-J5Z" id="atN-ch-TXI"/>
                 <outlet property="nameLabel" destination="mrM-E9-DYM" id="GJp-Mk-deg"/>
                 <outlet property="profileImageView" destination="pL6-rS-Gkc" id="aIi-EJ-73t"/>
                 <outlet property="shareButton" destination="Lm3-oe-7pw" id="AqY-mm-sfT"/>

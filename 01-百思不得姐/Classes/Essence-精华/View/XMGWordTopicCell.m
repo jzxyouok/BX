@@ -19,6 +19,8 @@
  */
 @property (weak, nonatomic) IBOutlet UIImageView *sinavImageView;
 
+@property (weak, nonatomic) IBOutlet UILabel *labelTitle;
+
 /**
  *  姓名
  */
@@ -113,6 +115,8 @@
     [self setTitleWithButton:_shareButton count:_wordTopic.repost placeTitle:@"分享"];
     //评论
     [self setTitleWithButton:_commentButton count:_wordTopic.comment placeTitle:@"评论"];
+    //帖子文字内容
+    _labelTitle.text = _wordTopic.text;
 }
 
 - (IBAction)clickFollow:(UIButton *)sender {

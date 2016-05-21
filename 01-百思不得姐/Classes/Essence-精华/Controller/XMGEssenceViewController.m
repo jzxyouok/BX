@@ -115,19 +115,19 @@ static CGFloat const animationTime = 0.5;
     [self addChildViewController:all];
     
     XMGTopicViewController *movie = [[XMGTopicViewController alloc]init];
-    all.type = XMGTpoicTypeMovie;
+    movie.type = XMGTpoicTypeMovie;
     [self addChildViewController:movie];
     
     XMGTopicViewController *sound = [[XMGTopicViewController alloc]init];
-    all.type = XMGTpoicTypeSound;
+    sound.type = XMGTpoicTypeSound;
     [self addChildViewController:sound];
     
     XMGTopicViewController *image = [[XMGTopicViewController alloc]init];
-    all.type = XMGTpoicTypeImage;
+    image.type = XMGTpoicTypeImage;
     [self addChildViewController:image];
     
     XMGTopicViewController *word = [[XMGTopicViewController alloc]init];
-    all.type = XMGTpoicTypeWord;
+    word.type = XMGTpoicTypeWord;
     [self addChildViewController:word];
 }
 
