@@ -74,6 +74,11 @@
         if (self.type == XMGTpoicTypeImage) {
             CGFloat imageW = maxSize.width;
             CGFloat imageH = imageW * self.height / self.width;
+            //判断中间内容的高度是否超过最大的高度,使用BreakH
+            if (imageH >= XMGTopicPictureMaxH) {
+                imageH = XMGTopicPictureBreakH;
+                self.tooBig = YES;
+            }
             _cellHeight = cellTextLabelY+cellBottomViewH+self.labelH+XMGTopicMargin+imageH;
             //图片帖子中间的尺寸
             _pictureFrame = CGRectMake(XMGTopicMargin, cellTextLabelY+self.labelH+XMGTopicMargin, imageW, imageH);

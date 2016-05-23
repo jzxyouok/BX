@@ -80,4 +80,8 @@
  *帖子的类型
  */
 @property (nonatomic, assign) XMGTpoicType type;
+/*
+ *图片是否太大
+ */
+@property (nonatomic, assign,getter=isTooBig) BOOL tooBig;
 @end

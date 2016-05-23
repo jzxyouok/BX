@@ -21,3 +21,5 @@ UIKIT_EXTERN CGFloat const titleViewY;
 UIKIT_EXTERN CGFloat const cellTextLabelY;
 UIKIT_EXTERN CGFloat const cellBottomViewH;
 UIKIT_EXTERN CGFloat const XMGTopicMargin;
+UIKIT_EXTERN CGFloat const XMGTopicPictureMaxH;
+UIKIT_EXTERN CGFloat const XMGTopicPictureBreakH;

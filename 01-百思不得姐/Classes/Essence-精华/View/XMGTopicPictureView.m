@@ -25,6 +25,17 @@
     _topic = topic;
     //显示图片
     [_imageView sd_setImageWithURL:[NSURL URLWithString:_topic.large_image]];
+    //判断是否为gif图片
+    NSString *extension = _topic.large_image.pathExtension;
+    _gifView.hidden = ![extension.lowercaseString isEqualToString:@"gif"];
+    //判断是否需要显示点击显示全部
+    if (_topic.isTooBig) {
+        _seeBigButton.hidden = NO;
+        _imageView.contentMode = UIViewContentModeScaleAspectFill;
+    }else {
+        _seeBigButton.hidden = YES;
+        _imageView.contentMode = UIViewContentModeScaleToFill;
+    }
 }
 - (void)awakeFromNib
 {
