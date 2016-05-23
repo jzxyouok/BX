@@ -52,6 +52,10 @@
  */
 @property (nonatomic, assign, readonly) CGFloat cellHeight;
 /*
+ *图片帖子中间的frame
+ */
+@property (nonatomic, assign, readonly) CGRect pictureFrame;
+/*
  *图片宽度
  */
 @property (nonatomic, assign) CGFloat width;
@@ -72,4 +76,8 @@
  */
 @property (nonatomic, copy) NSString *middle_image;
 
+/*
+ *帖子的类型
+ */
+@property (nonatomic, assign) XMGTpoicType type;
 @end

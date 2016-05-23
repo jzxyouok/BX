@@ -7,13 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef enum {
-    XMGTpoicTypeAll = 1,
-    XMGTpoicTypeImage = 10,
-    XMGTpoicTypeWord = 29,
-    XMGTpoicTypeSound = 31,
-    XMGTpoicTypeMovie = 41
-}XMGTpoicType;
 @interface XMGTopicViewController : UITableViewController
 @property (nonatomic, assign) XMGTpoicType type;
 @end

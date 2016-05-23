@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="XMGTopicPictureView">
+            <rect key="frame" x="0.0" y="0.0" width="304" height="198"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WRg-2j-CjF" userLabel="图片">
+                    <rect key="frame" x="0.0" y="0.0" width="304" height="198"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common-gif" translatesAutoresizingMaskIntoConstraints="NO" id="tC4-mk-sX7" userLabel="gif">
+                    <rect key="frame" x="0.0" y="0.0" width="31" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="31" id="401-S3-UWo"/>
+                        <constraint firstAttribute="width" constant="31" id="4Rq-dV-7hD"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cF-eJ-L3D">
+                    <rect key="frame" x="0.0" y="155" width="304" height="43"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="rgM-3F-f21"/>
+                    </constraints>
+                    <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="点击查看大图" image="see-big-picture" backgroundImage="see-big-picture-background"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="8cF-eJ-L3D" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FQp-wP-iWV"/>
+                <constraint firstAttribute="trailing" secondItem="WRg-2j-CjF" secondAttribute="trailing" id="T7y-xy-vra"/>
+                <constraint firstItem="WRg-2j-CjF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Wdg-Ga-Mvc"/>
+                <constraint firstAttribute="trailing" secondItem="8cF-eJ-L3D" secondAttribute="trailing" id="bOZ-JU-Gq8"/>
+                <constraint firstItem="tC4-mk-sX7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="e7k-rc-E4k"/>
+                <constraint firstAttribute="bottom" secondItem="8cF-eJ-L3D" secondAttribute="bottom" id="eti-ID-TeK"/>
+                <constraint firstAttribute="bottom" secondItem="WRg-2j-CjF" secondAttribute="bottom" id="svs-s8-WHr"/>
+                <constraint firstItem="WRg-2j-CjF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="uFG-1l-XqM"/>
+                <constraint firstItem="tC4-mk-sX7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="y3C-7I-Sci"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="gifView" destination="tC4-mk-sX7" id="edJ-Kf-4b2"/>
+                <outlet property="imageView" destination="WRg-2j-CjF" id="kge-VM-nIP"/>
+                <outlet property="seeBigButton" destination="8cF-eJ-L3D" id="2xc-80-3dR"/>
+            </connections>
+            <point key="canvasLocation" x="404" y="136"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="common-gif" width="31" height="31"/>
+        <image name="see-big-picture" width="19" height="19"/>
+        <image name="see-big-picture-background" width="285" height="43"/>
+    </resources>
+</document>

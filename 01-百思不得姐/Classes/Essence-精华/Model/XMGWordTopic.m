@@ -8,10 +8,17 @@
 
 #import "XMGWordTopic.h"
 #import "NSDate+XMGExtension.h"
+@interface  XMGWordTopic()
+//记录文字label的高度
+@property (nonatomic, assign) CGFloat labelH;
+
+@end
+
 @implementation XMGWordTopic
 {
     //私有成员变量
     CGFloat _cellHeight;
+    CGRect _pictureFrame;
 }
 + (NSDictionary *)mj_replacedKeyFromPropertyName
 {
@@ -58,9 +65,26 @@
 - (CGFloat)cellHeight
 {
     if (!_cellHeight) {
-        CGFloat labelH = [self.text boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width-4*XMGTopicMargin, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
-        _cellHeight = cellTextLabelY+cellBottomViewH+labelH+2*XMGTopicMargin+self.height;
+        //文字的最大尺寸
+        CGSize maxSize = CGSizeMake([UIScreen mainScreen].bounds.size.width-4*XMGTopicMargin, MAXFLOAT);
+        self.labelH = [self.text boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
+       //文字
+            _cellHeight = cellTextLabelY+cellBottomViewH+self.labelH+XMGTopicMargin;
+        //如果是图片帖子
+        if (self.type == XMGTpoicTypeImage) {
+            CGFloat imageW = maxSize.width;
+            CGFloat imageH = imageW * self.height / self.width;
+            _cellHeight = cellTextLabelY+cellBottomViewH+self.labelH+XMGTopicMargin+imageH;
+            //图片帖子中间的尺寸
+            _pictureFrame = CGRectMake(XMGTopicMargin, cellTextLabelY+self.labelH+XMGTopicMargin, imageW, imageH);
+        }
+        //补偿
+        _cellHeight +=XMGTopicMargin;
     }
     return _cellHeight;
+}
+- (CGRect)pictureFrame
+{
+    return _pictureFrame;
 }
 @end

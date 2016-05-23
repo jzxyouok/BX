@@ -6,7 +6,16 @@
 //  Copyright © 2016年 小码哥. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-
+/**
+ *帖子的类型
+ */
+typedef enum {
+    XMGTpoicTypeAll = 1,
+    XMGTpoicTypeImage = 10,
+    XMGTpoicTypeWord = 29,
+    XMGTpoicTypeSound = 31,
+    XMGTpoicTypeMovie = 41
+}XMGTpoicType;
 UIKIT_EXTERN CGFloat const titleViewHeight;
 UIKIT_EXTERN CGFloat const titleViewY;
 UIKIT_EXTERN CGFloat const cellTextLabelY;

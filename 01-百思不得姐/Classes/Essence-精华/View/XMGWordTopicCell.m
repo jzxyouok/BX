@@ -9,6 +9,7 @@
 #import "XMGWordTopicCell.h"
 #import "XMGWordTopic.h"
 #import <UIImageView+WebCache.h>
+#import "XMGTopicPictureView.h"
 @interface XMGWordTopicCell ()
 /**
  *  头像
@@ -46,6 +47,7 @@
  */
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 
+@property (nonatomic, weak) XMGTopicPictureView *pictureView;
 /**
  *添加好友
  */
@@ -74,6 +76,16 @@
 @end
 
 @implementation XMGWordTopicCell
+
+- (XMGTopicPictureView *)pictureView
+{
+    if (_pictureView == nil) {
+        XMGTopicPictureView *pictureView = [XMGTopicPictureView pictureView];
+        [self.contentView addSubview:pictureView];
+        _pictureView = pictureView;
+    }
+    return _pictureView;
+}
 - (void)awakeFromNib
 {
     UIImageView *imageView = [[UIImageView alloc]init];
@@ -117,6 +129,13 @@
     [self setTitleWithButton:_commentButton count:_wordTopic.comment placeTitle:@"评论"];
     //帖子文字内容
     _labelTitle.text = _wordTopic.text;
+    //判断帖子的类型
+    if (_wordTopic.type == XMGTpoicTypeImage) {
+        //传递模型显示图片
+        self.pictureView.topic = _wordTopic;
+        //pictureView的frame
+        self.pictureView.frame = _wordTopic.pictureFrame;
+    }
 }
 
 - (IBAction)clickFollow:(UIButton *)sender {

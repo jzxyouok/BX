@@ -46,6 +46,8 @@
 		9C558EFE1CED5145000809A2 /* XMGWordTopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C558EFC1CED5145000809A2 /* XMGWordTopicCell.xib */; };
 		9C558F011CED8058000809A2 /* XMGConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C558F001CED8058000809A2 /* XMGConst.m */; };
 		9CD430911CEE5E4E00C74A71 /* NSDate+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD430901CEE5E4E00C74A71 /* NSDate+XMGExtension.m */; };
+		9CD5C0CC1CF297DE00DA014D /* XMGTopicPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD5C0CB1CF297DE00DA014D /* XMGTopicPictureView.m */; };
+		9CD5C0CE1CF297F400DA014D /* XMGTopicPictureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CD5C0CD1CF297F400DA014D /* XMGTopicPictureView.xib */; };
 		DA9E81567E8AC4629608A735 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97E96429885DFBC9344ACBB0 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +135,9 @@
 		9C558F001CED8058000809A2 /* XMGConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGConst.m; sourceTree = "<group>"; };
 		9CD4308F1CEE5E4E00C74A71 /* NSDate+XMGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+XMGExtension.h"; sourceTree = "<group>"; };
 		9CD430901CEE5E4E00C74A71 /* NSDate+XMGExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+XMGExtension.m"; sourceTree = "<group>"; };
+		9CD5C0CA1CF297DE00DA014D /* XMGTopicPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGTopicPictureView.h; sourceTree = "<group>"; };
+		9CD5C0CB1CF297DE00DA014D /* XMGTopicPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGTopicPictureView.m; sourceTree = "<group>"; };
+		9CD5C0CD1CF297F400DA014D /* XMGTopicPictureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGTopicPictureView.xib; sourceTree = "<group>"; };
 		9ED90CEC200918F803FF50AF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -274,6 +279,9 @@
 				9C558EFA1CED5145000809A2 /* XMGWordTopicCell.h */,
 				9C558EFB1CED5145000809A2 /* XMGWordTopicCell.m */,
 				9C558EFC1CED5145000809A2 /* XMGWordTopicCell.xib */,
+				9CD5C0CA1CF297DE00DA014D /* XMGTopicPictureView.h */,
+				9CD5C0CB1CF297DE00DA014D /* XMGTopicPictureView.m */,
+				9CD5C0CD1CF297F400DA014D /* XMGTopicPictureView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -543,6 +551,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CD5C0CE1CF297F400DA014D /* XMGTopicPictureView.xib in Resources */,
 				70DA0D4D1B6085D500DD59F1 /* XMGRecommendUserCell.xib in Resources */,
 				70B5CBE01B5F998300E1C3EA /* XMGRecommendViewController.xib in Resources */,
 				70DA0D5B1B60D87E00DD59F1 /* XMGRecommendTagCell.xib in Resources */,
@@ -614,6 +623,7 @@
 				9CD430911CEE5E4E00C74A71 /* NSDate+XMGExtension.m in Sources */,
 				70DA0D5A1B60D87E00DD59F1 /* XMGRecommendTagCell.m in Sources */,
 				9C558EF91CED2871000809A2 /* XMGWordTopic.m in Sources */,
+				9CD5C0CC1CF297DE00DA014D /* XMGTopicPictureView.m in Sources */,
 				70B5CBC21B5F7EEF00E1C3EA /* XMGMeViewController.m in Sources */,
 				9C558EFD1CED5145000809A2 /* XMGWordTopicCell.m in Sources */,
 				70DA0D441B60775600DD59F1 /* XMGRecommendCategoryCell.m in Sources */,

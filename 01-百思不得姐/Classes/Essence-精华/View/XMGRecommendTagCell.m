@@ -18,10 +18,6 @@
 
 @implementation XMGRecommendTagCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
 - (void)setRecommendTag:(XMGRecommendTag *)recommendTag
 {
     _recommendTag = recommendTag;
