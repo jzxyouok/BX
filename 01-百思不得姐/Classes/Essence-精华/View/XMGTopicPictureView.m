@@ -8,13 +8,13 @@
 
 #import "XMGTopicPictureView.h"
 #import <UIImageView+WebCache.h>
-#import <DALabeledCircularProgressView.h>
+#import "XMGProgressView.h"
 #import "XMGShowPictureViewController.h"
 @interface XMGTopicPictureView ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIImageView *gifView;
 @property (weak, nonatomic) IBOutlet UIButton *seeBigButton;
-@property (weak, nonatomic) IBOutlet DALabeledCircularProgressView *progressView;
+@property (weak, nonatomic) IBOutlet XMGProgressView *progressView;
 
 @end
 
@@ -30,8 +30,7 @@
     [_imageView sd_setImageWithURL:[NSURL URLWithString:_topic.large_image] placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         self.progressView.hidden = NO;
         CGFloat progress = 1.0 * receivedSize / expectedSize;
-        self.progressView.progress = progress;
-        self.progressView.progressLabel.text = [NSString stringWithFormat:@"%.0f%%",progress * 100];
+        [self.progressView setProgress:progress animated:NO];
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.progressView.hidden = YES;
     }];
@@ -50,8 +49,6 @@
 - (void)awakeFromNib
 {
     self.autoresizingMask = UIViewAutoresizingNone;
-    self.progressView.roundedCorners = 5;
-    self.progressView.progressLabel.textColor = [UIColor whiteColor];
     self.imageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showPicture)];
     [self.imageView addGestureRecognizer:tap];
