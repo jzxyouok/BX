@@ -10,6 +10,12 @@
             <rect key="frame" x="0.0" y="0.0" width="304" height="198"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="post_placeholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="qUN-fL-Thf" userLabel="占位图片">
+                    <rect key="frame" x="0.0" y="20" width="304" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="mfo-Me-5M1"/>
+                    </constraints>
+                </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WRg-2j-CjF" userLabel="图片">
                     <rect key="frame" x="0.0" y="0.0" width="304" height="198"/>
                 </imageView>
@@ -28,15 +34,28 @@
                     <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="点击查看大图" image="see-big-picture" backgroundImage="see-big-picture-background"/>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqu-S1-IYS" userLabel="进度条控件" customClass="DALabeledCircularProgressView">
+                    <rect key="frame" x="102" y="49" width="100" height="100"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="bfY-vn-pEO"/>
+                        <constraint firstAttribute="width" constant="100" id="oec-PI-o2H"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="hqu-S1-IYS" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="4OJ-4W-zNA"/>
+                <constraint firstItem="qUN-fL-Thf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9px-rV-ihR"/>
                 <constraint firstItem="8cF-eJ-L3D" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FQp-wP-iWV"/>
                 <constraint firstAttribute="trailing" secondItem="WRg-2j-CjF" secondAttribute="trailing" id="T7y-xy-vra"/>
                 <constraint firstItem="WRg-2j-CjF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Wdg-Ga-Mvc"/>
+                <constraint firstItem="hqu-S1-IYS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="YQZ-Op-UEj"/>
                 <constraint firstAttribute="trailing" secondItem="8cF-eJ-L3D" secondAttribute="trailing" id="bOZ-JU-Gq8"/>
                 <constraint firstItem="tC4-mk-sX7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="e7k-rc-E4k"/>
                 <constraint firstAttribute="bottom" secondItem="8cF-eJ-L3D" secondAttribute="bottom" id="eti-ID-TeK"/>
+                <constraint firstItem="qUN-fL-Thf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="kUG-Ue-XtT"/>
+                <constraint firstAttribute="trailing" secondItem="qUN-fL-Thf" secondAttribute="trailing" id="pT7-ji-2jw"/>
                 <constraint firstAttribute="bottom" secondItem="WRg-2j-CjF" secondAttribute="bottom" id="svs-s8-WHr"/>
                 <constraint firstItem="WRg-2j-CjF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="uFG-1l-XqM"/>
                 <constraint firstItem="tC4-mk-sX7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="y3C-7I-Sci"/>
@@ -46,6 +65,7 @@
             <connections>
                 <outlet property="gifView" destination="tC4-mk-sX7" id="edJ-Kf-4b2"/>
                 <outlet property="imageView" destination="WRg-2j-CjF" id="kge-VM-nIP"/>
+                <outlet property="progressView" destination="hqu-S1-IYS" id="yZm-RA-cz0"/>
                 <outlet property="seeBigButton" destination="8cF-eJ-L3D" id="2xc-80-3dR"/>
             </connections>
             <point key="canvasLocation" x="404" y="136"/>
@@ -53,6 +73,7 @@
     </objects>
     <resources>
         <image name="common-gif" width="31" height="31"/>
+        <image name="post_placeholderImage" width="145" height="30"/>
         <image name="see-big-picture" width="19" height="19"/>
         <image name="see-big-picture-background" width="285" height="43"/>
     </resources>
