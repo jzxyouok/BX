@@ -56,6 +56,8 @@
 - (void)showPicture
 {
     XMGShowPictureViewController *showPicture = [[XMGShowPictureViewController alloc]init];
+    //传递模型给控制器
+    showPicture.topic = self.topic;
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:showPicture animated:YES completion:nil];
 }
 @end

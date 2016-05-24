@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class XMGWordTopic;
 @interface XMGShowPictureViewController : UIViewController
-
+@property (nonatomic, strong) XMGWordTopic *topic;
 @end
