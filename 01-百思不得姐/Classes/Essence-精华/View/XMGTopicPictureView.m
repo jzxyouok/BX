@@ -9,6 +9,7 @@
 #import "XMGTopicPictureView.h"
 #import <UIImageView+WebCache.h>
 #import <DALabeledCircularProgressView.h>
+#import "XMGShowPictureViewController.h"
 @interface XMGTopicPictureView ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIImageView *gifView;
@@ -51,5 +52,13 @@
     self.autoresizingMask = UIViewAutoresizingNone;
     self.progressView.roundedCorners = 5;
     self.progressView.progressLabel.textColor = [UIColor whiteColor];
+    self.imageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showPicture)];
+    [self.imageView addGestureRecognizer:tap];
+}
+- (void)showPicture
+{
+    XMGShowPictureViewController *showPicture = [[XMGShowPictureViewController alloc]init];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:showPicture animated:YES completion:nil];
 }
 @end

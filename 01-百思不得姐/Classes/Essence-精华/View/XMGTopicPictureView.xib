@@ -26,7 +26,7 @@
                         <constraint firstAttribute="width" constant="31" id="4Rq-dV-7hD"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cF-eJ-L3D">
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cF-eJ-L3D">
                     <rect key="frame" x="0.0" y="155" width="304" height="43"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="43" id="rgM-3F-f21"/>
