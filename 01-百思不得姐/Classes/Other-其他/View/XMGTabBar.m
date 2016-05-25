@@ -7,7 +7,7 @@
 //
 
 #import "XMGTabBar.h"
-
+#import "XMGPublishViewController.h"
 @interface XMGTabBar()
 /** 发布按钮 */
 @property (nonatomic, weak) UIButton *publishButton;
@@ -23,6 +23,7 @@
         
         // 添加发布按钮
         UIButton *publishButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [publishButton addTarget:self action:@selector(clickPublish) forControlEvents:UIControlEventTouchUpInside];
         [publishButton setBackgroundImage:[UIImage imageNamed:@"tabBar_publish_icon"] forState:UIControlStateNormal];
         [publishButton setBackgroundImage:[UIImage imageNamed:@"tabBar_publish_click_icon"] forState:UIControlStateHighlighted];
         publishButton.size = publishButton.currentBackgroundImage.size;
@@ -57,6 +58,15 @@
         // 增加索引
         index++;
     }
+}
+
+/**
+ *  点击发布按钮
+ */
+- (void)clickPublish
+{
+    XMGPublishViewController *publish = [[XMGPublishViewController alloc]init];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:publish animated:NO completion:nil];
 }
 
 @end

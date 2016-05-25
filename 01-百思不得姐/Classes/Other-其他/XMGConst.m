@@ -30,12 +30,16 @@ CGFloat const cellBottomViewH = 44;
 /**
  *  cell中控件的间距
  */
+
 CGFloat const XMGTopicMargin = 10;
+
 /**
  *  图片帖子中间图片的最大高度
  */
 CGFloat const XMGTopicPictureMaxH = 1000;
+
 /**
  *  图片帖子中间的图片超过最大高度 使用BreakH
  */
 CGFloat const XMGTopicPictureBreakH = 250;
+
