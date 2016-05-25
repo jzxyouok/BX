@@ -35,6 +35,16 @@
         [self.progressView setProgress:_topic.pictureProgress animated:NO];
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.progressView.hidden = YES;
+        if (_topic.isTooBig == NO) return;
+        //如果是大图   开启图形上下文
+        UIGraphicsBeginImageContextWithOptions(_topic.pictureFrame.size, YES, 0);
+        CGFloat width = _topic.pictureFrame.size.width;
+        CGFloat height = width * _topic.height / _topic.width;
+        [image drawInRect:CGRectMake(0, 0, width, height)];
+        //获得图片
+        self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+        //关闭图形上下文
+        UIGraphicsEndImageContext();
     }];
     //判断是否为gif图片
     NSString *extension = _topic.large_image.pathExtension;
@@ -42,10 +52,8 @@
     //判断是否需要显示点击显示全部
     if (_topic.isTooBig) {
         _seeBigButton.hidden = NO;
-        _imageView.contentMode = UIViewContentModeScaleAspectFill;
     }else {
         _seeBigButton.hidden = YES;
-        _imageView.contentMode = UIViewContentModeScaleToFill;
     }
 }
 - (void)awakeFromNib
