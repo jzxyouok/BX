@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XMGShowPictureViewController">
             <connections>
+                <outlet property="progressView" destination="N9r-z1-vrX" id="e25-cN-dXU"/>
                 <outlet property="scrollView" destination="C74-sN-gzu" id="rd7-Ou-1iL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,6 +20,14 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N9r-z1-vrX" customClass="XMGProgressView">
+                    <rect key="frame" x="250" y="250" width="100" height="100"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="T1d-Ev-2Ba"/>
+                        <constraint firstAttribute="width" constant="100" id="qac-Vi-ylq"/>
+                    </constraints>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7b-NJ-ENu" userLabel="返回">
                     <rect key="frame" x="10" y="10" width="35" height="35"/>
                     <constraints>
@@ -53,12 +62,14 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="N9r-z1-vrX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="GBC-Zi-iU3"/>
                 <constraint firstAttribute="trailing" secondItem="C74-sN-gzu" secondAttribute="trailing" id="KH7-Qv-nJv"/>
                 <constraint firstAttribute="trailing" secondItem="9Sc-ID-byZ" secondAttribute="trailing" constant="10" id="R7W-6Z-IcE"/>
                 <constraint firstItem="T7b-NJ-ENu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="Tbu-1t-egt"/>
                 <constraint firstItem="9Sc-ID-byZ" firstAttribute="leading" secondItem="iIP-pD-rG5" secondAttribute="trailing" constant="5" id="VrF-ap-SiH"/>
                 <constraint firstItem="C74-sN-gzu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XRI-tn-1m9"/>
                 <constraint firstAttribute="bottom" secondItem="9Sc-ID-byZ" secondAttribute="bottom" constant="10" id="Y9C-dD-y3A"/>
+                <constraint firstItem="N9r-z1-vrX" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ZhO-35-8q7"/>
                 <constraint firstAttribute="bottom" secondItem="C74-sN-gzu" secondAttribute="bottom" id="hS4-iE-xic"/>
                 <constraint firstItem="iIP-pD-rG5" firstAttribute="height" secondItem="9Sc-ID-byZ" secondAttribute="height" id="nkZ-qF-sqW"/>
                 <constraint firstItem="C74-sN-gzu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qCZ-b9-wcp"/>

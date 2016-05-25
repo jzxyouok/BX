@@ -26,11 +26,13 @@
 - (void)setTopic:(XMGWordTopic *)topic
 {
     _topic = topic;
+    //立马显示模型中的图片下载进度
+    [self.progressView setProgress:_topic.pictureProgress animated:NO];
     //显示图片
     [_imageView sd_setImageWithURL:[NSURL URLWithString:_topic.large_image] placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         self.progressView.hidden = NO;
-        CGFloat progress = 1.0 * receivedSize / expectedSize;
-        [self.progressView setProgress:progress animated:NO];
+        _topic.pictureProgress = 1.0 * receivedSize / expectedSize;
+        [self.progressView setProgress:_topic.pictureProgress animated:NO];
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.progressView.hidden = YES;
     }];

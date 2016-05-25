@@ -10,9 +10,11 @@
 #import <UIImageView+WebCache.h>
 #import "XMGWordTopic.h"
 #import <SVProgressHUD.h>
+#import "XMGProgressView.h"
 @interface XMGShowPictureViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, weak) UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet XMGProgressView *progressView;
 - (IBAction)back;
 - (IBAction)savePicture;
 - (IBAction)share;
@@ -46,7 +48,14 @@
         imageView.centerX = XMGScreenWidth * 0.5;
         imageView.centerY = XMGScreenHeight * 0.5;
     }
-    [imageView sd_setImageWithURL:[NSURL URLWithString:self.topic.large_image]];
+    //立马显示模型中的下载进度
+    [self.progressView setProgress:_topic.pictureProgress animated:NO];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:self.topic.large_image] placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        _topic.pictureProgress = 1.0 * receivedSize / expectedSize;
+        [self.progressView setProgress:_topic.pictureProgress animated:NO];
+    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        self.progressView.hidden = YES;
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,6 +68,11 @@
 }
 
 - (IBAction)savePicture {
+    //图片没有下载完成时,提醒用户
+    if (!self.imageView.image) {
+        [SVProgressHUD showErrorWithStatus:@"图片没有下载完成!"];
+        return;
+    }
     UIImageWriteToSavedPhotosAlbum(self.imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 }
 
