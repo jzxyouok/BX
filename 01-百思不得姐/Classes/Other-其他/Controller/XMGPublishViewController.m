@@ -8,15 +8,14 @@
 
 #import "XMGPublishViewController.h"
 #import "XMGVerticalButton.h"
+#import <POP.h>
 //列数
 static NSInteger const cols = 3;
 @interface XMGPublishViewController ()
 - (IBAction)cancel;
-
 @end
 
 @implementation XMGPublishViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSArray *images = @[@"publish-video",@"publish-picture",@"publish-text",@"publish-audio",@"publish-review",@"publish-offline"];
@@ -39,7 +38,7 @@ static NSInteger const cols = 3;
     CGFloat buttonX = 0;
     CGFloat buttonY = 0;
     //添加按钮
-    for (NSInteger i = 0; i<6; i++) {
+    for (NSInteger i = 0; i<images.count; i++) {
         //行数
         NSInteger row = i / cols;
         //列数
@@ -67,5 +66,21 @@ static NSInteger const cols = 3;
 
 - (IBAction)cancel {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(100, 100, 100, 100);
+    [self.view addSubview:btn];
+    btn.backgroundColor = [UIColor redColor];
+    POPSpringAnimation *spring = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
+    spring.fromValue = [NSValue valueWithCGPoint:btn.center];
+    spring.toValue = [NSValue valueWithCGPoint:CGPointMake(300, 400)];
+//    spring.velocity = @10;
+    spring.springBounciness = 20;
+    spring.springSpeed = 20;
+    
+    [btn pop_addAnimation:spring forKey:@"spring"];
 }
 @end
