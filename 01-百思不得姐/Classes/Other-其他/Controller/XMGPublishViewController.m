@@ -39,6 +39,8 @@ static CGFloat const XMGSpringFactor = 10;
     //添加按钮
     for (NSInteger i = 0; i<images.count; i++) {
         XMGVerticalButton *button = [[XMGVerticalButton alloc]init];
+        button.tag = i;
+        [button addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:button];
         //设置标题和图片
         [button setTitle:titles[i] forState:UIControlStateNormal];
@@ -87,7 +89,84 @@ static CGFloat const XMGSpringFactor = 10;
 
 
 - (IBAction)cancel {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
+    [self cancel:nil];
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self cancel:nil];
+}
+- (void)clickButton:(UIButton *)button
+{
+    switch (button.tag) {
+        case 0:
+        {
+            [self cancel:^{
+                XMGLog(@"发视频");
+            }];
+        }
+            break;
+        case 1:
+        {
+            [self cancel:^{
+                XMGLog(@"发图片");
+            }];
+        }
+            break;
+        case 2:
+        {
+            [self cancel:^{
+                XMGLog(@"发段子");
+            }];
+        }
+            break;
+        case 3:
+        {
+            [self cancel:^{
+                XMGLog(@"发声音");
+            }];
+        }
+            break;
+        case 4:
+        {
+            [self cancel:^{
+                XMGLog(@"审帖");
+            }];
+        }
+            break;
+        case 5:
+        {
+            [self cancel:^{
+                XMGLog(@"离线下载");
+            }];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)cancel:(void (^) ())block
+{
+    //动画过程中,禁止用户操作
+    self.view.userInteractionEnabled = NO;
+    for (NSInteger i = 2; i<self.view.subviews.count; i++) {
+        UIView *view = self.view.subviews[i];
+        //计算位置
+        POPBasicAnimation *spring = [POPBasicAnimation animationWithPropertyNamed:kPOPViewCenter];
+        CGFloat beginX = view.center.x;
+        CGFloat beginY = view.center.y;
+        CGFloat endY = beginY+XMGScreenHeight;
+        spring.fromValue = [NSValue valueWithCGPoint:CGPointMake(beginX, beginY)];
+        spring.toValue = [NSValue valueWithCGPoint:CGPointMake(beginX, endY)];
+        spring.beginTime = CACurrentMediaTime() + (i-2) * XMGAnimationDelay;
+        if (i == self.view.subviews.count-1) {
+            [spring setCompletionBlock:^(POPAnimation *animation, BOOL finished) {
+                [self dismissViewControllerAnimated:NO completion:nil];
+                if (block) block();
+            }];
+        }
+        [view pop_addAnimation:spring forKey:nil];
+    }
 }
 @end
