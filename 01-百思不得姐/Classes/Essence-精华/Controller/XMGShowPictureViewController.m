@@ -78,7 +78,7 @@
 
 - (IBAction)share {
 }
-//图盘保存
+//图片保存
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
     if (error) {
         [SVProgressHUD showErrorWithStatus:@"保存失败"];

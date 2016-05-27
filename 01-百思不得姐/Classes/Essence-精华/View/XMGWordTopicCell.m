@@ -11,6 +11,7 @@
 #import <UIImageView+WebCache.h>
 #import "XMGTopicPictureView.h"
 #import "XMGTopicVoiceView.h"
+#import "XMGTopicVideoView.h"
 @interface XMGWordTopicCell ()
 /**
  *  头像
@@ -57,6 +58,10 @@
  *  声音帖子
  */
 @property (nonatomic, weak) XMGTopicVoiceView *voiceView;
+/**
+ *  视频帖子
+ */
+@property (nonatomic, weak) XMGTopicVideoView *videoView;
 /**
  *添加好友
  */
@@ -105,6 +110,15 @@
     }
     return _voiceView;
 }
+- (XMGTopicVideoView *)videoView
+{
+    if (_videoView == nil) {
+        XMGTopicVideoView *videoView = [XMGTopicVideoView videoView];
+        [self.contentView addSubview:videoView];
+        _videoView = videoView;
+    }
+    return _videoView;
+}
 - (void)awakeFromNib
 {
     UIImageView *imageView = [[UIImageView alloc]init];
@@ -150,14 +164,30 @@
     _labelTitle.text = _wordTopic.text;
     //判断帖子的类型
     if (_wordTopic.type == XMGTpoicTypeImage) {//图片帖子
+        self.pictureView.hidden = NO;
+        self.voiceView.hidden = YES;
+        self.videoView.hidden = YES;
         //传递模型显示图片
         self.pictureView.topic = _wordTopic;
         //pictureView的frame
         self.pictureView.frame = _wordTopic.pictureFrame;
     }else if (_wordTopic.type == XMGTpoicTypeSound) {//声音帖子
+        self.voiceView.hidden = NO;
+        self.pictureView.hidden = YES;
+        self.videoView.hidden = YES;
         self.voiceView.topic = _wordTopic;
         //取出模型中计算好的voiceFrame属性
         self.voiceView.frame = _wordTopic.voiceFrame;
+    }else if (_wordTopic.type == XMGTpoicTypeMovie) {//视频帖子
+        self.videoView.hidden = NO;
+        self.pictureView.hidden = YES;
+        self.voiceView.hidden = YES;
+        self.videoView.topic = _wordTopic;
+        self.videoView.frame = _wordTopic.videoFrame;
+    }else {
+        self.pictureView.hidden = YES;
+        self.voiceView.hidden = YES;
+        self.videoView.hidden = YES;
     }
 }
 

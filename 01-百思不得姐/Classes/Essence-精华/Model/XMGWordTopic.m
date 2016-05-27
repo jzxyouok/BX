@@ -88,6 +88,13 @@
             _cellHeight = cellTextLabelY+cellBottomViewH+self.labelH+2*XMGTopicMargin+imageH;
             //声音帖子中间的尺寸
             _voiceFrame = CGRectMake(XMGTopicMargin, cellTextLabelY+self.labelH+XMGTopicMargin, imageW, imageH);
+        }else if (self.type == XMGTpoicTypeMovie) {
+            //如果是视频帖子
+            CGFloat imageW = maxSize.width;
+            CGFloat imageH = imageW * self.height / self.width;
+            _cellHeight = cellTextLabelY+cellBottomViewH+self.labelH+2*XMGTopicMargin+imageH;
+            //视频帖子中间的尺寸
+            _videoFrame = CGRectMake(XMGTopicMargin, cellTextLabelY+self.labelH+XMGTopicMargin, imageW, imageH);
         }
         //补偿
         _cellHeight +=XMGTopicMargin;

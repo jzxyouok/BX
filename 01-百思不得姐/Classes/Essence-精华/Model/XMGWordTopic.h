@@ -58,6 +58,16 @@
  */
 @property (nonatomic, copy) NSString *playcount;
 /*
+ *视频的时长
+ */
+@property (nonatomic, copy) NSString *videotime;
+/*
+ *视屏的url
+ */
+@property (nonatomic, copy) NSString *videouri;
+
+
+/*
  *辅助的属性
  */
 @property (nonatomic, assign, readonly) CGFloat cellHeight;
@@ -70,6 +80,10 @@
  *声音帖子中间的frame
  */
 @property (nonatomic, assign, readonly) CGRect voiceFrame;
+/*
+ *视频帖子中间的frame
+ */
+@property (nonatomic, assign, readonly) CGRect videoFrame;
 /*
  *图片宽度
  */
