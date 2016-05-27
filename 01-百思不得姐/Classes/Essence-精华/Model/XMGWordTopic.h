@@ -45,8 +45,18 @@
  *评论的人数
  */
 @property (nonatomic, assign) NSInteger comment;
-
-
+/*
+ *音频的时长
+ */
+@property (nonatomic, copy) NSString *voicetime;
+/*
+ *音频的播放地址
+ */
+@property (nonatomic, copy) NSString *voiceuri;
+/*
+ *音频播放次数
+ */
+@property (nonatomic, copy) NSString *playcount;
 /*
  *辅助的属性
  */
@@ -55,6 +65,11 @@
  *图片帖子中间的frame
  */
 @property (nonatomic, assign, readonly) CGRect pictureFrame;
+
+/*
+ *声音帖子中间的frame
+ */
+@property (nonatomic, assign, readonly) CGRect voiceFrame;
 /*
  *图片宽度
  */

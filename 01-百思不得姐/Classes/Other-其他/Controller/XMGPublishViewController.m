@@ -164,7 +164,7 @@ static CGFloat const XMGSpringFactor = 10;
             [spring setCompletionBlock:^(POPAnimation *animation, BOOL finished) {
                 [self dismissViewControllerAnimated:NO completion:nil];
                 if (block) block();
-            }];
+            }];                                                                                                                                                         
         }
         [view pop_addAnimation:spring forKey:nil];
     }

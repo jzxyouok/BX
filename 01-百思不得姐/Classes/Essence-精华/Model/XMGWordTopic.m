@@ -18,7 +18,6 @@
 {
     //私有成员变量
     CGFloat _cellHeight;
-    CGRect _pictureFrame;
 }
 + (NSDictionary *)mj_replacedKeyFromPropertyName
 {
@@ -79,17 +78,20 @@
                 imageH = XMGTopicPictureBreakH;
                 self.tooBig = YES;
             }
-            _cellHeight = cellTextLabelY+cellBottomViewH+self.labelH+XMGTopicMargin+imageH;
+            _cellHeight = cellTextLabelY+cellBottomViewH+self.labelH+2*XMGTopicMargin+imageH;
             //图片帖子中间的尺寸
             _pictureFrame = CGRectMake(XMGTopicMargin, cellTextLabelY+self.labelH+XMGTopicMargin, imageW, imageH);
+        }else if (self.type == XMGTpoicTypeSound) {
+            //如果是声音帖子
+            CGFloat imageW = maxSize.width;
+            CGFloat imageH = imageW * self.height / self.width;
+            _cellHeight = cellTextLabelY+cellBottomViewH+self.labelH+2*XMGTopicMargin+imageH;
+            //声音帖子中间的尺寸
+            _voiceFrame = CGRectMake(XMGTopicMargin, cellTextLabelY+self.labelH+XMGTopicMargin, imageW, imageH);
         }
         //补偿
         _cellHeight +=XMGTopicMargin;
     }
     return _cellHeight;
-}
-- (CGRect)pictureFrame
-{
-    return _pictureFrame;
 }
 @end

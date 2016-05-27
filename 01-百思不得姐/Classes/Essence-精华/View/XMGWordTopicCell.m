@@ -10,6 +10,7 @@
 #import "XMGWordTopic.h"
 #import <UIImageView+WebCache.h>
 #import "XMGTopicPictureView.h"
+#import "XMGTopicVoiceView.h"
 @interface XMGWordTopicCell ()
 /**
  *  头像
@@ -47,7 +48,15 @@
  */
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 
+/**
+ *  图片帖子
+ */
 @property (nonatomic, weak) XMGTopicPictureView *pictureView;
+
+/**
+ *  声音帖子
+ */
+@property (nonatomic, weak) XMGTopicVoiceView *voiceView;
 /**
  *添加好友
  */
@@ -85,6 +94,16 @@
         _pictureView = pictureView;
     }
     return _pictureView;
+}
+
+- (XMGTopicVoiceView *)voiceView
+{
+    if (_voiceView == nil) {
+        XMGTopicVoiceView *voiceView = [XMGTopicVoiceView voiceView];
+        [self.contentView addSubview:voiceView];
+        _voiceView = voiceView;
+    }
+    return _voiceView;
 }
 - (void)awakeFromNib
 {
@@ -130,11 +149,15 @@
     //帖子文字内容
     _labelTitle.text = _wordTopic.text;
     //判断帖子的类型
-    if (_wordTopic.type == XMGTpoicTypeImage) {
+    if (_wordTopic.type == XMGTpoicTypeImage) {//图片帖子
         //传递模型显示图片
         self.pictureView.topic = _wordTopic;
         //pictureView的frame
         self.pictureView.frame = _wordTopic.pictureFrame;
+    }else if (_wordTopic.type == XMGTpoicTypeSound) {//声音帖子
+        self.voiceView.topic = _wordTopic;
+        //取出模型中计算好的voiceFrame属性
+        self.voiceView.frame = _wordTopic.voiceFrame;
     }
 }
 
