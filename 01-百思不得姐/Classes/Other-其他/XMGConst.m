@@ -43,3 +43,10 @@ CGFloat const XMGTopicPictureMaxH = 1000;
  */
 CGFloat const XMGTopicPictureBreakH = 250;
 
+/**
+ *  XMGUser模型中的男性
+ */
+NSString * const XMGUserSexMale = @"m";
+NSString * const XMGUserSexFemale = @"f";
+
+

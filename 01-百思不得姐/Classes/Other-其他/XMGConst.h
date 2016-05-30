@@ -23,3 +23,5 @@ UIKIT_EXTERN CGFloat const cellBottomViewH;
 UIKIT_EXTERN CGFloat const XMGTopicMargin;
 UIKIT_EXTERN CGFloat const XMGTopicPictureMaxH;
 UIKIT_EXTERN CGFloat const XMGTopicPictureBreakH;
+UIKIT_EXTERN NSString * const XMGUserSexMale;
+UIKIT_EXTERN NSString * const XMGUserSexFemale;

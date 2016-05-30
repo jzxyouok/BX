@@ -16,7 +16,9 @@
 
 #import "XMGWordTopic.h"
 #import "XMGWordTopicCell.h"
+#import "XMGUser.h"
 @interface XMGTopicViewController ()
+
 //模型数组
 @property (nonatomic, strong) NSMutableArray *wordTopics;
 

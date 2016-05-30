@@ -26,6 +26,10 @@
              @"middle_image":@"image2"
              };
 }
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{@"top_cmt":@"XMGCommnt"};
+}
 - (NSString *)created_at
 {
     NSDateFormatter *fmt = [[NSDateFormatter alloc]init];
