@@ -12,80 +12,47 @@
 #import "XMGTopicPictureView.h"
 #import "XMGTopicVoiceView.h"
 #import "XMGTopicVideoView.h"
+#import "XMGCommnt.h"
+#import "XMGUser.h"
 @interface XMGWordTopicCell ()
-/**
- *  头像
- */
+/**头像 */
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
-/**
- *  新浪加v
- */
+/**新浪加v */
 @property (weak, nonatomic) IBOutlet UIImageView *sinavImageView;
-
 @property (weak, nonatomic) IBOutlet UILabel *labelTitle;
 
-/**
- *  姓名
- */
+/**姓名 */
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-/**
- *  创建时间
- */
+/**创建时间 */
 @property (weak, nonatomic) IBOutlet UILabel *createTimeLabel;
-/**
- *  顶
- */
+/**顶 */
 @property (weak, nonatomic) IBOutlet UIButton *dingButton;
-/**
- *  踩
- */
+/**踩 */
 @property (weak, nonatomic) IBOutlet UIButton *caiButton;
-/**
- *  分享/转发
- */
+/**分享/转发 */
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
-/**
- *  评论
- */
+/**评论 */
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
-
-/**
- *  图片帖子
- */
+/**图片帖子 */
 @property (nonatomic, weak) XMGTopicPictureView *pictureView;
-
-/**
- *  声音帖子
- */
+/**声音帖子 */
 @property (nonatomic, weak) XMGTopicVoiceView *voiceView;
-/**
- *  视频帖子
- */
+/**视频帖子 */
 @property (nonatomic, weak) XMGTopicVideoView *videoView;
-/**
- *添加好友
- */
+/**添加好友 */
 - (IBAction)clickFollow:(UIButton *)sender;
-
-/**
- *顶一下
- */
+/**顶一下 */
 - (IBAction)clickDing:(UIButton *)sender;
-
-/**
- *踩一下
- */
+/**踩一下 */
 - (IBAction)clickCai:(UIButton *)sender;
-
-/**
- *分享
- */
+/**分享 */
 - (IBAction)clickShare:(UIButton *)sender;
-
-/**
- *评论
- */
+/**评论 */
 - (IBAction)clickComment:(UIButton *)sender;
+/**最热评论父控件 */
+@property (weak, nonatomic) IBOutlet UIView *topCmtView;
+/**最热评论文字内容 */
+@property (weak, nonatomic) IBOutlet UILabel *topCmtLabel;
 
 @end
 
@@ -188,6 +155,14 @@
         self.pictureView.hidden = YES;
         self.voiceView.hidden = YES;
         self.videoView.hidden = YES;
+    }
+    //判断是否需要显示最热评论
+    if (_wordTopic.top_cmt.count) {
+        self.topCmtView.hidden = NO;
+        XMGCommnt *cmt = _wordTopic.top_cmt[0];
+        self.topCmtLabel.text = [NSString stringWithFormat:@"%@ : %@",cmt.user.username,cmt.content];
+    }else {
+        self.topCmtView.hidden = YES;
     }
 }
 

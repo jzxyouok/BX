@@ -17,6 +17,7 @@
 #import "XMGWordTopic.h"
 #import "XMGWordTopicCell.h"
 #import "XMGUser.h"
+#import "XMGCommentViewController.h"
 @interface XMGTopicViewController ()
 
 //模型数组
@@ -154,6 +155,11 @@ static NSString * const XMGWordTopicId = @"wordTopic";
     XMGWordTopic *wordTopic = self.wordTopics[indexPath.row];
     cell.wordTopic = wordTopic;
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    XMGCommentViewController *commentVc = [[XMGCommentViewController alloc]init];
+    [self.navigationController pushViewController:commentVc animated:YES];
 }
 /**
  *设置行高

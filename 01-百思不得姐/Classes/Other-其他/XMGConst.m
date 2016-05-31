@@ -49,4 +49,7 @@ CGFloat const XMGTopicPictureBreakH = 250;
 NSString * const XMGUserSexMale = @"m";
 NSString * const XMGUserSexFemale = @"f";
 
+/**最热评论的文字高度 */
+CGFloat const XMGTopCmtH = 17;
+
 

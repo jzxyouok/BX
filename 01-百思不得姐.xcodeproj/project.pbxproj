@@ -53,6 +53,8 @@
 		9C558EFE1CED5145000809A2 /* XMGWordTopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C558EFC1CED5145000809A2 /* XMGWordTopicCell.xib */; };
 		9C558F011CED8058000809A2 /* XMGConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C558F001CED8058000809A2 /* XMGConst.m */; };
 		9C5C67081CF945C400434A7D /* XMGUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5C67071CF945C400434A7D /* XMGUser.m */; };
+		9C7C6EE41CFD8403003B038E /* XMGCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C6EE21CFD8403003B038E /* XMGCommentViewController.m */; };
+		9C7C6EE51CFD8403003B038E /* XMGCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C7C6EE31CFD8403003B038E /* XMGCommentViewController.xib */; };
 		9CAF187C1CFBC8BC00FD4B04 /* XMGCommnt.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF187B1CFBC8BC00FD4B04 /* XMGCommnt.m */; };
 		9CC92E6F1CF54ACD00B63315 /* XMGPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC92E6D1CF54ACD00B63315 /* XMGPublishViewController.m */; };
 		9CC92E701CF54ACD00B63315 /* XMGPublishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC92E6E1CF54ACD00B63315 /* XMGPublishViewController.xib */; };
@@ -157,6 +159,9 @@
 		9C558F001CED8058000809A2 /* XMGConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGConst.m; sourceTree = "<group>"; };
 		9C5C67061CF945C400434A7D /* XMGUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGUser.h; sourceTree = "<group>"; };
 		9C5C67071CF945C400434A7D /* XMGUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGUser.m; sourceTree = "<group>"; };
+		9C7C6EE11CFD8403003B038E /* XMGCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGCommentViewController.h; sourceTree = "<group>"; };
+		9C7C6EE21CFD8403003B038E /* XMGCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGCommentViewController.m; sourceTree = "<group>"; };
+		9C7C6EE31CFD8403003B038E /* XMGCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGCommentViewController.xib; sourceTree = "<group>"; };
 		9CAF187A1CFBC8BC00FD4B04 /* XMGCommnt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGCommnt.h; sourceTree = "<group>"; };
 		9CAF187B1CFBC8BC00FD4B04 /* XMGCommnt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGCommnt.m; sourceTree = "<group>"; };
 		9CC92E6C1CF54ACD00B63315 /* XMGPublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGPublishViewController.h; sourceTree = "<group>"; };
@@ -287,6 +292,9 @@
 				9C291D711CF407E300140D7F /* XMGShowPictureViewController.h */,
 				9C291D721CF407E300140D7F /* XMGShowPictureViewController.m */,
 				9C291D731CF407E300140D7F /* XMGShowPictureViewController.xib */,
+				9C7C6EE11CFD8403003B038E /* XMGCommentViewController.h */,
+				9C7C6EE21CFD8403003B038E /* XMGCommentViewController.m */,
+				9C7C6EE31CFD8403003B038E /* XMGCommentViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -605,6 +613,7 @@
 				9CC92E701CF54ACD00B63315 /* XMGPublishViewController.xib in Resources */,
 				70DA0D5B1B60D87E00DD59F1 /* XMGRecommendTagCell.xib in Resources */,
 				9C558EE71CEBD393000809A2 /* XMGPushGuide.xib in Resources */,
+				9C7C6EE51CFD8403003B038E /* XMGCommentViewController.xib in Resources */,
 				70DA0D451B60775600DD59F1 /* XMGRecommendCategoryCell.xib in Resources */,
 				9C558EFE1CED5145000809A2 /* XMGWordTopicCell.xib in Resources */,
 				7069885B1B646ACA00DA90AA /* XMGLoginRegisterViewController.xib in Resources */,
@@ -693,6 +702,7 @@
 				9C558F011CED8058000809A2 /* XMGConst.m in Sources */,
 				9CAF187C1CFBC8BC00FD4B04 /* XMGCommnt.m in Sources */,
 				70B5CBC11B5F7EEF00E1C3EA /* XMGFriendTrendsViewController.m in Sources */,
+				9C7C6EE41CFD8403003B038E /* XMGCommentViewController.m in Sources */,
 				70B5CBC41B5F7EEF00E1C3EA /* AppDelegate.m in Sources */,
 				70B5CBE21B5F9A8100E1C3EA /* Foundation+Log.m in Sources */,
 				70B5CBC81B5F7EEF00E1C3EA /* main.m in Sources */,

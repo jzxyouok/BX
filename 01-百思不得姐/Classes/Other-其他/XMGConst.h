@@ -25,3 +25,4 @@ UIKIT_EXTERN CGFloat const XMGTopicPictureMaxH;
 UIKIT_EXTERN CGFloat const XMGTopicPictureBreakH;
 UIKIT_EXTERN NSString * const XMGUserSexMale;
 UIKIT_EXTERN NSString * const XMGUserSexFemale;
+UIKIT_EXTERN CGFloat const XMGTopCmtH;

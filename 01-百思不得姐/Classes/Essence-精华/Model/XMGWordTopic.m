@@ -8,6 +8,8 @@
 
 #import "XMGWordTopic.h"
 #import "NSDate+XMGExtension.h"
+#import "XMGCommnt.h"
+#import "XMGUser.h"
 @interface  XMGWordTopic()
 //记录文字label的高度
 @property (nonatomic, assign) CGFloat labelH;
@@ -99,6 +101,13 @@
             _cellHeight = cellTextLabelY+cellBottomViewH+self.labelH+2*XMGTopicMargin+imageH;
             //视频帖子中间的尺寸
             _videoFrame = CGRectMake(XMGTopicMargin, cellTextLabelY+self.labelH+XMGTopicMargin, imageW, imageH);
+        }
+        //计算最热评论的高度
+        if (self.top_cmt.count) {
+            XMGCommnt *cmt = self.top_cmt.firstObject;
+            NSString *topCmt = [NSString stringWithFormat:@"%@ : %@",cmt.user.username,cmt.content];
+            CGFloat textH = [topCmt boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size.height;
+            _cellHeight += XMGTopCmtH + textH + XMGTopicMargin;
         }
         //补偿
         _cellHeight +=XMGTopicMargin;
