@@ -11,4 +11,6 @@
 @interface XMGWordTopicCell : UITableViewCell
 //模型
 @property (nonatomic, strong) XMGWordTopic *wordTopic;
+/**快速返回一个实例化的对象 */
++ (instancetype)cell;
 @end

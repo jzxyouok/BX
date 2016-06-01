@@ -57,7 +57,10 @@
 @end
 
 @implementation XMGWordTopicCell
-
++ (instancetype)cell
+{
+    return [[[NSBundle mainBundle]loadNibNamed:NSStringFromClass(self) owner:nil options:nil]lastObject];
+}
 - (XMGTopicPictureView *)pictureView
 {
     if (_pictureView == nil) {
@@ -185,7 +188,7 @@
     frame.origin.x = XMGTopicMargin;
     frame.origin.y += XMGTopicMargin;
     frame.size.width -= 2 * XMGTopicMargin;
-    frame.size.height -= XMGTopicMargin;
+    frame.size.height = self.wordTopic.cellHeight - XMGTopicMargin;
     [super setFrame:frame];
 }
 #pragma mark - 对按钮文字做处理的方法

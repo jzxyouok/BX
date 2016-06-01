@@ -7,9 +7,10 @@
 //
 
 #import "XMGCommentViewController.h"
-
-@interface XMGCommentViewController () <UIScrollViewDelegate>
+#import "XMGWordTopicCell.h"
+@interface XMGCommentViewController () <UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -20,8 +21,10 @@
     //设置导航栏
     [self setUpNav];
     //添加监听
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
-   }
+    [self addObserver];
+    //设置表格头部视图
+    [self setTableHeader];
+    }
 
 /**设置导航栏 */
 - (void)setUpNav
@@ -29,6 +32,18 @@
     //设置标题
     self.title = @"评论";
     self.navigationItem.rightBarButtonItem= [UIBarButtonItem itemWithImage:@"comment_nav_item_share_icon" highImage:@"comment_nav_item_share_icon_click" target:self action:@selector(share)];
+}
+/**添加监听 */
+- (void)addObserver
+{
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+/**设置表格头部视图 */
+- (void)setTableHeader
+{
+    XMGWordTopicCell *cell = [XMGWordTopicCell cell];
+    cell.wordTopic=  self.topic;
+    self.tableView.tableHeaderView = cell;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -53,5 +68,15 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self.view endEditing:YES];
+}
+#pragma mark - 数据源 - 代理方法
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 10;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    return cell;
 }
 @end

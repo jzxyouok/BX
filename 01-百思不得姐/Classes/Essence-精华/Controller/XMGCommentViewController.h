@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class XMGWordTopic;
 @interface XMGCommentViewController : UIViewController
-
+/**模型 */
+@property (nonatomic, strong) XMGWordTopic *topic;
 @end
