@@ -39,6 +39,8 @@
 @property (nonatomic, copy) NSString *videouri;
 /**最热评论 */
 @property (nonatomic, strong) NSArray *top_cmt;
+/**帖子的id */
+@property (nonatomic, copy) NSString *Id;
 
 /*--------------------------------------------------辅助属性---------------------------------------------------*/
 /**行高 */

@@ -39,8 +39,8 @@
 @property (nonatomic, weak) XMGTopicVoiceView *voiceView;
 /**视频帖子 */
 @property (nonatomic, weak) XMGTopicVideoView *videoView;
-/**添加好友 */
-- (IBAction)clickFollow:(UIButton *)sender;
+/**点击更多 */
+- (IBAction)more;
 /**顶一下 */
 - (IBAction)clickDing:(UIButton *)sender;
 /**踩一下 */
@@ -88,6 +88,23 @@
         _videoView = videoView;
     }
     return _videoView;
+}
+/**点击了更多 */
+- (IBAction)more {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    //收藏
+    [alert addAction:[UIAlertAction actionWithTitle:@"收藏" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        XMGLog(@"收藏成功!");
+    }]];
+    //转发
+    [alert addAction:[UIAlertAction actionWithTitle:@"转发" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        XMGLog(@"转发成功!");
+    }]];
+    //取消
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        XMGLog(@"取消成功!");
+    }]];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 - (void)awakeFromNib
 {
@@ -169,8 +186,7 @@
     }
 }
 
-- (IBAction)clickFollow:(UIButton *)sender {
-}
+
 
 - (IBAction)clickDing:(UIButton *)sender {
 }

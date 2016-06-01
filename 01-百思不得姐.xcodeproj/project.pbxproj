@@ -38,6 +38,8 @@
 		70DA0D561B60D7DC00DD59F1 /* XMGRecommendTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA0D551B60D7DC00DD59F1 /* XMGRecommendTag.m */; };
 		70DA0D5A1B60D87E00DD59F1 /* XMGRecommendTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DA0D581B60D87E00DD59F1 /* XMGRecommendTagCell.m */; };
 		70DA0D5B1B60D87E00DD59F1 /* XMGRecommendTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70DA0D591B60D87E00DD59F1 /* XMGRecommendTagCell.xib */; };
+		9C12BD961CFEBDD400A8B43C /* XMGCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C12BD941CFEBDD400A8B43C /* XMGCommentTableViewCell.m */; };
+		9C12BD971CFEBDD400A8B43C /* XMGCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C12BD951CFEBDD400A8B43C /* XMGCommentTableViewCell.xib */; };
 		9C13F7871CEFEF06002C5046 /* XMGTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C13F7861CEFEF06002C5046 /* XMGTopicViewController.m */; };
 		9C291D741CF407E300140D7F /* XMGShowPictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C291D721CF407E300140D7F /* XMGShowPictureViewController.m */; };
 		9C291D751CF407E300140D7F /* XMGShowPictureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C291D731CF407E300140D7F /* XMGShowPictureViewController.xib */; };
@@ -134,6 +136,9 @@
 		70DA0D581B60D87E00DD59F1 /* XMGRecommendTagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGRecommendTagCell.m; sourceTree = "<group>"; };
 		70DA0D591B60D87E00DD59F1 /* XMGRecommendTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGRecommendTagCell.xib; sourceTree = "<group>"; };
 		97E96429885DFBC9344ACBB0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C12BD931CFEBDD400A8B43C /* XMGCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGCommentTableViewCell.h; sourceTree = "<group>"; };
+		9C12BD941CFEBDD400A8B43C /* XMGCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGCommentTableViewCell.m; sourceTree = "<group>"; };
+		9C12BD951CFEBDD400A8B43C /* XMGCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGCommentTableViewCell.xib; sourceTree = "<group>"; };
 		9C13F7851CEFEF06002C5046 /* XMGTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGTopicViewController.h; sourceTree = "<group>"; };
 		9C13F7861CEFEF06002C5046 /* XMGTopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGTopicViewController.m; sourceTree = "<group>"; };
 		9C291D711CF407E300140D7F /* XMGShowPictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGShowPictureViewController.h; sourceTree = "<group>"; };
@@ -334,6 +339,9 @@
 				9C3762ED1CF84019008EFD71 /* XMGTopicVideoView.xib */,
 				9C291D761CF409E900140D7F /* XMGProgressView.h */,
 				9C291D771CF409E900140D7F /* XMGProgressView.m */,
+				9C12BD931CFEBDD400A8B43C /* XMGCommentTableViewCell.h */,
+				9C12BD941CFEBDD400A8B43C /* XMGCommentTableViewCell.m */,
+				9C12BD951CFEBDD400A8B43C /* XMGCommentTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -620,6 +628,7 @@
 				70B5CB631B5F27D200E1C3EA /* Images.xcassets in Resources */,
 				9C3762EE1CF84019008EFD71 /* XMGTopicVideoView.xib in Resources */,
 				70B5CBD11B5F942F00E1C3EA /* XMGFriendTrendsViewController.xib in Resources */,
+				9C12BD971CFEBDD400A8B43C /* XMGCommentTableViewCell.xib in Resources */,
 				9C291D751CF407E300140D7F /* XMGShowPictureViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -703,6 +712,7 @@
 				9CAF187C1CFBC8BC00FD4B04 /* XMGCommnt.m in Sources */,
 				70B5CBC11B5F7EEF00E1C3EA /* XMGFriendTrendsViewController.m in Sources */,
 				9C7C6EE41CFD8403003B038E /* XMGCommentViewController.m in Sources */,
+				9C12BD961CFEBDD400A8B43C /* XMGCommentTableViewCell.m in Sources */,
 				70B5CBC41B5F7EEF00E1C3EA /* AppDelegate.m in Sources */,
 				70B5CBE21B5F9A8100E1C3EA /* Foundation+Log.m in Sources */,
 				70B5CBC81B5F7EEF00E1C3EA /* main.m in Sources */,

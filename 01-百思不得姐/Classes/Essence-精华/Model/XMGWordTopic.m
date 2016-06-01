@@ -25,7 +25,8 @@
 {
     return @{@"small_image":@"image0",
              @"large_image":@"image1",
-             @"middle_image":@"image2"
+             @"middle_image":@"image2",
+             @"Id":@"id"
              };
 }
 + (NSDictionary *)mj_objectClassInArray
