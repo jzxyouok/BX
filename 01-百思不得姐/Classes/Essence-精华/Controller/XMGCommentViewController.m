@@ -151,23 +151,45 @@ static NSString * const Id = @"cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     XMGCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Id];
-    if (_hotCount) {//如果存在最热评论
-        if (indexPath.section == 0) cell.comment = self.hot[indexPath.row];
-        if (indexPath.section == 1) cell.comment = self.data[indexPath.row];
-    }else if (_dataCount) {//如果存在最新评论
-        cell.comment = self.data[indexPath.row];
-    }
+    cell.comment = [self commentAtIndexPath:indexPath];
     return cell;
 }
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (_hotCount) {//如果存在热门评论
-        if (section == 0) return @"最热评论";
-        if (section == 1) return @"最新评论";
+    return [self viewInSection:section];
+}
+- (UIView *)viewInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc]init];
+    view.backgroundColor = XMGGlobalBg;
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(XMGTopicMargin, 0, XMGScreenWidth, XMGSectionHeaderH)];
+    label.font = [UIFont systemFontOfSize:XMGSectionHeaderFont];
+    label.textColor = XMGRGBColor(73, 73, 73);
+
+    [view addSubview:label];
+    if (_hotCount) {//如果存在最热评论
+        if (section == 0) {
+            label.text = @"最热评论";
+        }else {
+            label.text = @"最新评论";
+        }
     }else if (_dataCount) {//如果存在最新评论
-        return @"最新评论";
+        label.text = @"最新评论";
+    }
+        return view;
+}
+- (XMGCommnt *)commentAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (_hotCount) {
+        if (indexPath.section == 0) return self.hot[indexPath.row];
+        if (indexPath.section == 1) return self.data[indexPath.row];
+    }else if (_dataCount) {
+        return self.data[indexPath.row];
     }
     return nil;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return XMGSectionHeaderH;
 }
 @end

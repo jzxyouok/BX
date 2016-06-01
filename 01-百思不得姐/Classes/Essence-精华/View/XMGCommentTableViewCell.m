@@ -11,7 +11,7 @@
 @implementation XMGCommentTableViewCell
 - (void)awakeFromNib
 {
-    self.textLabel.font = [UIFont systemFontOfSize:14];
+    self.textLabel.font = [UIFont systemFontOfSize:XMGCommentLabelFont];
 }
 - (void)setComment:(XMGCommnt *)comment
 {
