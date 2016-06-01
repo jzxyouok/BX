@@ -139,11 +139,9 @@ static NSString * const Id = @"cell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
        if (_hotCount) {//如果存在热门评论
-        if (section == 0) return _hotCount;
-        if (section == 1) return _dataCount;
-           return 0;
+        return section? _dataCount:_hotCount;
         }else if (_dataCount) {//如果存在最新评论
-        return self.data.count;
+        return _dataCount;
     }
     return 0;
 }
@@ -168,11 +166,7 @@ static NSString * const Id = @"cell";
 
     [view addSubview:label];
     if (_hotCount) {//如果存在最热评论
-        if (section == 0) {
-            label.text = @"最热评论";
-        }else {
-            label.text = @"最新评论";
-        }
+    label.text = section? @"最新评论" : @"最热评论";
     }else if (_dataCount) {//如果存在最新评论
         label.text = @"最新评论";
     }
@@ -181,8 +175,7 @@ static NSString * const Id = @"cell";
 - (XMGCommnt *)commentAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_hotCount) {
-        if (indexPath.section == 0) return self.hot[indexPath.row];
-        if (indexPath.section == 1) return self.data[indexPath.row];
+        return indexPath.section?self.data[indexPath.row] : self.hot[indexPath.row];
     }else if (_dataCount) {
         return self.data[indexPath.row];
     }
