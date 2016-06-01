@@ -8,7 +8,8 @@
 
 #import "XMGCommentViewController.h"
 #import "XMGWordTopicCell.h"
-@interface XMGCommentViewController () <UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
+#import "XMGWordTopic.h"
+@interface XMGCommentViewController () <UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -41,9 +42,14 @@
 /**设置表格头部视图 */
 - (void)setTableHeader
 {
+    UIView *header = [[UIView alloc]init];
     XMGWordTopicCell *cell = [XMGWordTopicCell cell];
     cell.wordTopic=  self.topic;
-    self.tableView.tableHeaderView = cell;
+    cell.size = CGSizeMake(XMGScreenWidth, 0);
+    header.height = _topic.cellHeight+XMGTopicMargin;
+    [header addSubview:cell];
+    self.tableView.tableHeaderView = header;
+    self.tableView.backgroundColor = XMGGlobalBg;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -70,13 +76,25 @@
     [self.view endEditing:YES];
 }
 #pragma mark - 数据源 - 代理方法
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 10;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    cell.textLabel.text = [NSString stringWithFormat:@"%zd - %zd",indexPath.section,indexPath.row];
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"评论";
 }
 @end
