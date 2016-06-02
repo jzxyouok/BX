@@ -28,7 +28,8 @@ UIKIT_EXTERN CGFloat const cellTextLabelY;
 UIKIT_EXTERN CGFloat const cellBottomViewH;
 /**cell中控件的间距 */
 UIKIT_EXTERN CGFloat const XMGTopicMargin;
-
+/**cell的重用标识符 */
+UIKIT_EXTERN NSString * const Id;
 
 /*---------------------------------------------------------图片帖子---------------------------------------------------------------------*/
 /**图片帖子中间图片的最大高度 */
@@ -53,3 +54,5 @@ UIKIT_EXTERN CGFloat const XMGSectionHeaderH;
 UIKIT_EXTERN CGFloat const XMGSectionHeaderFont;
 /**评论文字的大小 */
 UIKIT_EXTERN CGFloat const XMGCommentLabelFont;
+/**header的重用标识符 */
+UIKIT_EXTERN NSString * const XMGCommentHeaderId;

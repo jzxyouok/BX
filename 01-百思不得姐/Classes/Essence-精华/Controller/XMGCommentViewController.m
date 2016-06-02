@@ -14,6 +14,7 @@
 #import "XMGCommentTableViewCell.h"
 #import "XMGCommnt.h"
 #import <MJExtension.h>
+#import "XMGCommentHeaderFooterView.h"
 @interface XMGCommentViewController () <UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -28,10 +29,10 @@
 @end
 
 @implementation XMGCommentViewController
-static NSString * const Id = @"cell";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //注册
+    //注册cell重用标识符
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([XMGCommentTableViewCell class]) bundle:nil] forCellReuseIdentifier:Id];
     //设置导航栏
     [self setUpNav];
@@ -154,23 +155,13 @@ static NSString * const Id = @"cell";
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return [self viewInSection:section];
-}
-- (UIView *)viewInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc]init];
-    view.backgroundColor = XMGGlobalBg;
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(XMGTopicMargin, 0, XMGScreenWidth, XMGSectionHeaderH)];
-    label.font = [UIFont systemFontOfSize:XMGSectionHeaderFont];
-    label.textColor = XMGRGBColor(73, 73, 73);
-
-    [view addSubview:label];
+    XMGCommentHeaderFooterView *header = [XMGCommentHeaderFooterView headerFooterViewWith:tableView];
     if (_hotCount) {//如果存在最热评论
-    label.text = section? @"最新评论" : @"最热评论";
+        header.title = section? @"最新评论" : @"最热评论";
     }else if (_dataCount) {//如果存在最新评论
-        label.text = @"最新评论";
+        header.title = @"最新评论";
     }
-        return view;
+    return header;
 }
 - (XMGCommnt *)commentAtIndexPath:(NSIndexPath *)indexPath
 {

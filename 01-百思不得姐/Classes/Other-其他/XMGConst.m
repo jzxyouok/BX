@@ -21,6 +21,8 @@ CGFloat const cellTextLabelY = 55;
 CGFloat const cellBottomViewH = 44;
 /**cell中控件的间距 */
 CGFloat const XMGTopicMargin = 10;
+/**cell的重用标识符 */
+NSString * const Id = @"cell";
 
 
 /*---------------------------------------------------------图片帖子---------------------------------------------------------------------*/
@@ -46,6 +48,8 @@ CGFloat const XMGSectionHeaderH = 44;
 CGFloat const XMGSectionHeaderFont = 15;
 /**评论文字的大小 */
 CGFloat const XMGCommentLabelFont = 14;
+/**header的重用标识符 */
+NSString * const XMGCommentHeaderId = @"header";
 
 
 
