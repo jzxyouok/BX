@@ -11,10 +11,10 @@
 #import "XMGWordTopic.h"
 #import <MJRefresh.h>
 #import <AFNetworking.h>
-#import "XMGCommentTableViewCell.h"
 #import "XMGCommnt.h"
 #import <MJExtension.h>
 #import "XMGCommentHeaderFooterView.h"
+#import "XMGCommentCell.h"
 @interface XMGCommentViewController () <UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -31,13 +31,14 @@
 @end
 
 @implementation XMGCommentViewController
-
+/**评论的标识 */
+static NSString * const commentId = @"comment";
 - (void)viewDidLoad {
     [super viewDidLoad];
     //注册cell重用标识符
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([XMGCommentTableViewCell class]) bundle:nil] forCellReuseIdentifier:Id];
-    //设置导航栏
-    [self setUpNav];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([XMGCommentCell class]) bundle:nil] forCellReuseIdentifier:commentId];
+    //基本设置
+    [self setUpBasic];
     //添加监听
     [self addObserver];
     //设置表格头部视图
@@ -48,12 +49,14 @@
     [self.tableView.mj_header beginRefreshing];
 }
 
-/**设置导航栏 */
-- (void)setUpNav
+/**基本设置 */
+- (void)setUpBasic
 {
     //设置标题
     self.title = @"评论";
     self.navigationItem.rightBarButtonItem= [UIBarButtonItem itemWithImage:@"comment_nav_item_share_icon" highImage:@"comment_nav_item_share_icon_click" target:self action:@selector(share)];
+    self.tableView.estimatedRowHeight = 44;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 /**添加监听 */
 - (void)addObserver
@@ -156,7 +159,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    XMGCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Id];
+    XMGCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:commentId];
     cell.comment = [self commentAtIndexPath:indexPath];
     return cell;
 }

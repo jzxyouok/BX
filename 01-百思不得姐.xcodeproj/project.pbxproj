@@ -64,6 +64,8 @@
 		9CD430911CEE5E4E00C74A71 /* NSDate+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD430901CEE5E4E00C74A71 /* NSDate+XMGExtension.m */; };
 		9CD5C0CC1CF297DE00DA014D /* XMGTopicPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD5C0CB1CF297DE00DA014D /* XMGTopicPictureView.m */; };
 		9CD5C0CE1CF297F400DA014D /* XMGTopicPictureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CD5C0CD1CF297F400DA014D /* XMGTopicPictureView.xib */; };
+		9CDED71B1D02748300D93971 /* XMGCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDED7191D02748300D93971 /* XMGCommentCell.m */; };
+		9CDED71C1D02748300D93971 /* XMGCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CDED71A1D02748300D93971 /* XMGCommentCell.xib */; };
 		DA9E81567E8AC4629608A735 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97E96429885DFBC9344ACBB0 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -180,6 +182,9 @@
 		9CD5C0CA1CF297DE00DA014D /* XMGTopicPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGTopicPictureView.h; sourceTree = "<group>"; };
 		9CD5C0CB1CF297DE00DA014D /* XMGTopicPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGTopicPictureView.m; sourceTree = "<group>"; };
 		9CD5C0CD1CF297F400DA014D /* XMGTopicPictureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGTopicPictureView.xib; sourceTree = "<group>"; };
+		9CDED7181D02748300D93971 /* XMGCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGCommentCell.h; sourceTree = "<group>"; };
+		9CDED7191D02748300D93971 /* XMGCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGCommentCell.m; sourceTree = "<group>"; };
+		9CDED71A1D02748300D93971 /* XMGCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XMGCommentCell.xib; sourceTree = "<group>"; };
 		9ED90CEC200918F803FF50AF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -347,6 +352,9 @@
 				9C12BD951CFEBDD400A8B43C /* XMGCommentTableViewCell.xib */,
 				9C3630641CFFFF3B00C7939E /* XMGCommentHeaderFooterView.h */,
 				9C3630651CFFFF3B00C7939E /* XMGCommentHeaderFooterView.m */,
+				9CDED7181D02748300D93971 /* XMGCommentCell.h */,
+				9CDED7191D02748300D93971 /* XMGCommentCell.m */,
+				9CDED71A1D02748300D93971 /* XMGCommentCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -623,6 +631,7 @@
 				70DA0D4D1B6085D500DD59F1 /* XMGRecommendUserCell.xib in Resources */,
 				70B5CBE01B5F998300E1C3EA /* XMGRecommendViewController.xib in Resources */,
 				9C3762E91CF7EB27008EFD71 /* XMGTopicVoiceView.xib in Resources */,
+				9CDED71C1D02748300D93971 /* XMGCommentCell.xib in Resources */,
 				9CC92E701CF54ACD00B63315 /* XMGPublishViewController.xib in Resources */,
 				70DA0D5B1B60D87E00DD59F1 /* XMGRecommendTagCell.xib in Resources */,
 				9C558EE71CEBD393000809A2 /* XMGPushGuide.xib in Resources */,
@@ -713,6 +722,7 @@
 				9C3630661CFFFF3B00C7939E /* XMGCommentHeaderFooterView.m in Sources */,
 				70B5CBC61B5F7EEF00E1C3EA /* UIView+XMGExtension.m in Sources */,
 				7069885E1B6470FF00DA90AA /* XMGVerticalButton.m in Sources */,
+				9CDED71B1D02748300D93971 /* XMGCommentCell.m in Sources */,
 				70B5CBC71B5F7EEF00E1C3EA /* XMGTabBarController.m in Sources */,
 				9C558F011CED8058000809A2 /* XMGConst.m in Sources */,
 				9CAF187C1CFBC8BC00FD4B04 /* XMGCommnt.m in Sources */,
