@@ -26,6 +26,8 @@
 @property (nonatomic, assign) NSInteger hotCount;
 /**最新评论数 */
 @property (nonatomic, assign) NSInteger dataCount;
+/**最热评论的数组 */
+@property (nonatomic, strong) NSArray *top_cmt;
 @end
 
 @implementation XMGCommentViewController
@@ -61,13 +63,18 @@
 /**设置表格头部视图 */
 - (void)setTableHeader
 {
+    if (_topic.top_cmt.count) {
+        //记录
+        self.top_cmt = _topic.top_cmt;
+        //清空
+        _topic.top_cmt = nil;
+        [_topic setValue:@0 forKeyPath:@"cellHeight"];
+    }
     UIView *header = [[UIView alloc]init];
     header.height = _topic.cellHeight+XMGTopicMargin;
-    
     XMGWordTopicCell *cell = [XMGWordTopicCell cell];
     cell.wordTopic=  self.topic;
     cell.size = CGSizeMake(XMGScreenWidth, 0);
-    
     cell.backgroundColor = [UIColor clearColor];
     [header addSubview:cell];
     self.tableView.tableHeaderView = header;
@@ -175,5 +182,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return XMGSectionHeaderH;
+}
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    if (self.top_cmt) {
+        _topic.top_cmt = self.top_cmt;
+        [_topic setValue:@0 forKeyPath:@"cellHeight"];
+    }
 }
 @end
