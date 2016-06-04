@@ -34,8 +34,11 @@
                         <color key="textColor" red="0.7843137255" green="0.7843137255" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xai-xA-fhC" userLabel="评论内容">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xai-xA-fhC" userLabel="评论内容">
                         <rect key="frame" x="55" y="40" width="246" height="46.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="NPM-dg-qQ6"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -61,11 +64,30 @@
                         <color key="textColor" red="0.7843137255" green="0.7843137255" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CKo-Be-GPP" userLabel="音频按钮">
+                        <rect key="frame" x="55" y="40" width="62" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="62" id="1L9-aY-XZ0"/>
+                            <constraint firstAttribute="height" constant="22" id="SF0-1x-5Cy"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="18''" image="play-voice-stop" backgroundImage="play-voice-bg">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted" backgroundImage="play-voice-bg-select"/>
+                        <connections>
+                            <action selector="playVoice" destination="KGk-i7-Jjw" eventType="touchUpInside" id="EUL-v6-aAn"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="CKo-Be-GPP" firstAttribute="leading" secondItem="xai-xA-fhC" secondAttribute="leading" id="3N5-5v-MI2"/>
                     <constraint firstItem="wYT-e4-Qxt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="8cl-RF-W4t"/>
                     <constraint firstItem="xai-xA-fhC" firstAttribute="leading" secondItem="wYT-e4-Qxt" secondAttribute="trailing" constant="10" id="Bo4-Rv-cMv"/>
                     <constraint firstItem="X56-UY-Ub1" firstAttribute="top" secondItem="pai-XI-pOh" secondAttribute="top" id="DN4-hZ-j02"/>
+                    <constraint firstItem="CKo-Be-GPP" firstAttribute="top" secondItem="xai-xA-fhC" secondAttribute="top" id="Fdm-XO-Y4r"/>
                     <constraint firstItem="pFi-8k-NtV" firstAttribute="leading" secondItem="xai-xA-fhC" secondAttribute="trailing" constant="10" id="HiP-3E-WZj"/>
                     <constraint firstItem="pFi-8k-NtV" firstAttribute="trailing" secondItem="YZ9-EC-sxe" secondAttribute="trailing" id="JQs-Vs-Pn1"/>
                     <constraint firstAttribute="trailing" secondItem="YZ9-EC-sxe" secondAttribute="trailing" constant="10" id="LpM-ea-NIb"/>
@@ -86,6 +108,7 @@
                 <outlet property="profileImageView" destination="wYT-e4-Qxt" id="aYK-jw-rEX"/>
                 <outlet property="sexView" destination="pai-XI-pOh" id="9NO-jF-VGd"/>
                 <outlet property="usernameLabel" destination="X56-UY-Ub1" id="fRD-pX-0ES"/>
+                <outlet property="voiceBtn" destination="CKo-Be-GPP" id="5eA-Bz-M9P"/>
             </connections>
             <point key="canvasLocation" x="423.5" y="310.5"/>
         </tableViewCell>
@@ -94,5 +117,8 @@
         <image name="Profile_manIcon" width="13" height="13"/>
         <image name="commentLikeButton" width="18" height="18"/>
         <image name="commentLikeButtonClick" width="19" height="19"/>
+        <image name="play-voice-bg" width="62" height="22"/>
+        <image name="play-voice-bg-select" width="74" height="24"/>
+        <image name="play-voice-stop" width="12" height="12"/>
     </resources>
 </document>
