@@ -78,8 +78,8 @@
                 <constraint firstAttribute="bottom" secondItem="DNb-oY-MM1" secondAttribute="bottom" id="7QH-19-ygk"/>
                 <constraint firstItem="sUM-mX-FIa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ESx-u8-HZT"/>
                 <constraint firstItem="DNb-oY-MM1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GKz-vN-8E6"/>
-                <constraint firstItem="DNb-oY-MM1" firstAttribute="top" secondItem="sUM-mX-FIa" secondAttribute="bottom" id="GTL-Tc-Slx"/>
                 <constraint firstItem="sUM-mX-FIa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TZW-YF-dqU"/>
+                <constraint firstItem="DNb-oY-MM1" firstAttribute="top" secondItem="sUM-mX-FIa" secondAttribute="bottom" id="b64-ol-PFB"/>
                 <constraint firstAttribute="trailing" secondItem="DNb-oY-MM1" secondAttribute="trailing" id="bAA-xV-apB"/>
                 <constraint firstAttribute="trailing" secondItem="sUM-mX-FIa" secondAttribute="trailing" id="wT4-Q2-fLo"/>
             </constraints>

@@ -43,6 +43,12 @@
         self.voiceBtn.hidden = YES;
     }
 }
+- (void)setFrame:(CGRect)frame
+{
+    frame.origin.x += XMGTopicMargin;
+    frame.size.width -= 2 * XMGTopicMargin;
+    [super setFrame:frame];
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
 }

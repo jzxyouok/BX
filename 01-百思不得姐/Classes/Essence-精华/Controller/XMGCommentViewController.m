@@ -28,9 +28,20 @@
 @property (nonatomic, assign) NSInteger dataCount;
 /**最热评论的数组 */
 @property (nonatomic, strong) NSArray *top_cmt;
+/**页码 */
+@property (nonatomic, assign) NSInteger page;
+/**manager */
+@property (nonatomic, strong) AFHTTPSessionManager *manager;
 @end
 
 @implementation XMGCommentViewController
+- (AFHTTPSessionManager *)manager
+{
+    if (_manager == nil) {
+        _manager = [AFHTTPSessionManager manager];
+    }
+    return _manager;
+}
 /**评论的标识 */
 static NSString * const commentId = @"comment";
 - (void)viewDidLoad {
@@ -55,8 +66,10 @@ static NSString * const commentId = @"comment";
     //设置标题
     self.title = @"评论";
     self.navigationItem.rightBarButtonItem= [UIBarButtonItem itemWithImage:@"comment_nav_item_share_icon" highImage:@"comment_nav_item_share_icon_click" target:self action:@selector(share)];
-    self.tableView.estimatedRowHeight = 44;
+    self.tableView.estimatedRowHeight = 100;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    //内边距
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, XMGTopicMargin, 0);
 }
 /**添加监听 */
 - (void)addObserver
@@ -87,25 +100,37 @@ static NSString * const commentId = @"comment";
 - (void)setUpRefresh
 {
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNew)];
-    self.tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
+    //一开始隐藏
+    self.tableView.mj_footer.hidden = YES;
 }
 /**下拉加载新数据 */
 - (void)loadNew
 {
+    //所有任务都取消
+    [self.manager.tasks makeObjectsPerformSelector:@selector(cancel)];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"a"] = @"dataList";
     params[@"c"] = @"comment";
     params[@"data_id"] = self.topic.Id;
     params[@"hot"] = @"1";
-  [[AFHTTPSessionManager manager]GET:@"http://api.budejie.com/api/api_open.php" parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+  [self.manager GET:@"http://api.budejie.com/api/api_open.php" parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
       
   } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * responseObject) {
       self.data = [XMGCommnt mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
       self.hot = [XMGCommnt mj_objectArrayWithKeyValuesArray:responseObject[@"hot"]];
       self.dataCount = self.data.count;
       self.hotCount = self.hot.count;
+      //结束刷新
       [self.tableView.mj_header endRefreshing];
+      self.page = 1;
+      //刷新表格
       [self.tableView reloadData];
+//      控制footer的状态
+      NSInteger total = [responseObject[@"total"] integerValue];
+      if (_dataCount >= total) {
+          [self.tableView.mj_footer endRefreshingWithNoMoreData];
+      }
   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
       [self.tableView.mj_header endRefreshing];
   }];
@@ -113,7 +138,36 @@ static NSString * const commentId = @"comment";
 /**上拉加载更多 */
 - (void)loadMore
 {
+    //取消所有
+    [self.manager.operationQueue cancelAllOperations];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"a"] = @"dataList";
+    params[@"c"] = @"comment";
+    params[@"data_id"] = self.topic.Id;
+    params[@"page"] = @(self.page+1);
+    XMGCommnt *commnt = [self.data lastObject];
+    params[@"lastcid"] = commnt.Id;
     
+    [self.manager GET:@"http://api.budejie.com/api/api_open.php" parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSArray *array = [XMGCommnt mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        [self.data addObjectsFromArray:array];
+        self.dataCount = self.data.count;
+        self.page++;
+        //控制footer的状态
+        NSInteger total = [responseObject[@"total"] integerValue];
+        if (_dataCount >= total) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else {
+            //停止刷新
+            [self.tableView.mj_footer endRefreshing];
+        }
+        //刷新表格
+        [self.tableView reloadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self.tableView.mj_footer endRefreshing];
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -159,6 +213,7 @@ static NSString * const commentId = @"comment";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.tableView.mj_footer.hidden = (self.dataCount == 0);
     XMGCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:commentId];
     cell.comment = [self commentAtIndexPath:indexPath];
     return cell;
@@ -193,5 +248,6 @@ static NSString * const commentId = @"comment";
         _topic.top_cmt = self.top_cmt;
         [_topic setValue:@0 forKeyPath:@"cellHeight"];
     }
+    [self.manager invalidateSessionCancelingTasks:YES];
 }
 @end
